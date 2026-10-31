@@ -611,6 +611,36 @@ body[data-reading="research"] .genre-treatment .tier-study{display:block}
 /* v5.2.8: ranking follows selected genre; concise scope indicator */
 .fa48-ranking .fa54-rank-scope{display:inline-flex;max-width:100%;padding:5px 9px;margin:1px 0 10px;border:1px solid #47756b;border-radius:9px;background:#193d3d;color:#d6f6e9;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
 #drawTitle:focus{outline:none}
+
+/* v5.4.5: rank rows -- name / observed score range & certainty / unobtrusive detail link. */
+.fa48-rank-item{align-items:flex-start;gap:9px}
+.fa48-rank-number{padding-top:2px}
+.fa48-rank-content{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.fa48-rank-name{width:100%;line-height:1.45}
+.fa57-rank-indicators{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fa57-rank-pill{display:inline-flex;gap:5px;align-items:center;border:1px solid #45656a;border-radius:7px;padding:4px 7px;background:#1b3940;color:#effaf8;font-size:11px;line-height:1.5;white-space:nowrap}
+.fa57-rank-pill-label{font-weight:500;color:#b5d0d0}
+.fa57-rank-pill-value{font-weight:750;font-variant-numeric:tabular-nums}
+.fa57-rank-pill.effect-positive{border-color:#52796c;background:#1d423a}
+.fa57-rank-pill.effect-negative{border-color:#936365;background:#432b35}
+.fa57-rank-pill.grade-pending{color:#d3d6d8}
+.fa48-rank-jump{flex:none;min-height:30px;padding:5px 3px;border:0;border-bottom:1px solid #79bdb4;border-radius:0;background:transparent;color:#a5e4da;font-size:11px;font-weight:600;line-height:1.4;text-align:left;cursor:pointer}
+.fa48-rank-jump:hover{color:#fff;border-color:#fff;background:transparent}
+.fa48-rank-jump:focus-visible{outline:2px solid #f2d39c;outline-offset:3px}
+.fa57-rank-legend{font-size:11px!important;line-height:1.6!important;color:#bdd0d0!important;margin:3px 0 10px!important}
+@media(max-width:480px){.fa57-rank-pill{font-size:10.5px;padding:4px 6px}.fa48-rank-content{gap:6px}.fa48-rank-jump{min-height:30px}}
+
+
+/* v5.4.7: visibly separate unapproved provisional direction from signed scores. */
+.fa57-provisional{margin:7px 0;padding:8px 9px;border-left:3px solid #cfac65;border-radius:7px;background:#3c3727;font-size:12px;line-height:1.55;color:#f4e8d0}
+.fa57-provisional[data-certainty="X"]{border-left-color:#db9297;background:#402d37;color:#fbe2e4}
+.fa57-provisional strong{font-weight:800;color:inherit}
+.fa57-provisional-note{font-size:11px;color:#e9d8b8;margin:3px 0 0}
+.fa57-provisional[data-certainty="X"] .fa57-provisional-note{color:#ebc5ce}
+.fa57-provisional-reason{margin:5px 0;border:1px solid #866e5d;border-radius:6px;padding:5px 7px;color:inherit}
+.fa57-provisional-reason summary{cursor:pointer;font-size:11px}
+.fa57-provisional-reason p{margin:5px 0}
+@media(max-width:390px){.fa57-provisional{padding:6px;font-size:11px}}
 </style><style id="atlas-bridge-fa-v528">
 /* Research Atlas cross-navigation: paper identity only; no efficacy inference. */
 .fa-bridge-top{display:inline-flex;align-items:center;margin-top:6px;min-height:40px;padding:8px 12px;border:1px solid #488992;background:#163c46;border-radius:9px;color:#dafdf0;font-size:12px;font-weight:650;text-decoration:none}
@@ -677,9 +707,109 @@ body[data-reading="research"] .genre-treatment .tier-study{display:block}
 .fa54-rank-endpoint-note{border-left:3px solid #83bdcc;padding:6px 11px;margin:0 0 10px!important;font-size:12px;line-height:1.7;color:#d8e7ee;background:#182f39;border-radius:0 6px 6px 0}
 .fa-en-language-note{border:1px solid #648b8c;border-radius:8px;padding:10px 12px;margin:6px 0 12px;font-size:12px;color:#d6e6e8;background:#14323c}
 @media(max-width:420px){.fa-locale-toggle{font-size:12px}.fa-locale-toggle a{min-width:65px}}
-</style><meta content="v5.4.2 + corrected F5 v3.3 science render JA; no ranking increments" name="atlas-build"/></head><body><a class="fa-a11y-skip" href="#atlasMain" id="faA11ySkip">メインコンテンツへ移動</a><div class="atlas"><header class="header"><div><nav aria-label="表示言語 / Interface language" class="fa-locale-toggle" role="group"><a aria-current="page" href="./index.html" id="faLocaleJA" lang="ja">日本語</a><a href="./english/index.html" id="faLocaleEN" lang="en">English</a></nav><div class="eyebrow">TRANSDIAGNOSTIC RESEARCH EXPLORER / FATIGUE EVIDENCE ATLAS</div><h1>FATIGUE <span>Evidence Atlas</span></h1> <a aria-label="ME/CFS Research Atlasを新しいタブで開く" class="fa-bridge-top" href="https://saru02155-design.github.io/reserch-atlas/" rel="noopener noreferrer" target="_blank">ME/CFS Research Atlas ↗</a></div><div class="headright"><div class="counter" id="headerCount">—</div><div>研究・参考資料：257記録（独立した試験数とは異なります）</div><div>出典：代表研究・レビュー・診療指針｜結果の方向と確かさは別です</div></div></header>
+</style><style id="fa55-f5-pubscore-v546">
+/* v5.4.6: Show F5 per-publication science ratings inside every new and updated intervention card. */
+.fa55-study-scores{border:1px solid #527b86;background:linear-gradient(150deg,#173a46,#112b35);border-radius:13px;padding:12px 13px;margin:9px 0 11px;min-width:0;color:#e4f4f1;box-sizing:border-box;}
+.fa55-score-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:9px;color:#e8f7f4;font-size:13px;}
+.fa55-score-count{font-size:11px;color:#b1d2d6;font-weight:400;}
+.fa55-score-list{display:grid;gap:9px;}
+.fa55-score-item{padding:10px 10px 9px;border-radius:9px;background:#0d2530;border:1px solid #436674;min-width:0;}
+.fa55-score-study-name{font-size:12px;font-weight:650;line-height:1.55;color:#e6faf6;overflow-wrap:anywhere;margin-bottom:7px;}
+.fa55-score-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:7px;}
+.fa55-score-badges>span{display:inline-flex;align-items:center;padding:3px 7px;border-radius:7px;border:1px solid #5d8390;background:#193f4c;font-size:11px;font-weight:650;line-height:1.4;color:#f1ffff;}
+.fa55-score-badges .fa55-science-effect{border-color:#70b7a6;background:#21554e;color:#e4fff4;font-size:13px;}
+.fa55-score-badges .fa55-science-pending{border-color:#83939d;background:#283e4b;color:#e2e8e9;}
+.fa55-score-badges .fa55-science-certainty{border-color:#98a6cc;background:#30415d;color:#eef2ff;}
+.fa55-score-badges .fa55-science-layer{font-weight:400;font-size:10px;color:#bad8e0;}
+.fa55-science-range{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:2px 0 7px;max-width:365px;}
+.fa55-science-step{border:1px solid #456674;background:#18323e;color:#abc2cc;min-width:0;text-align:center;padding:5px 0;border-radius:6px;font-size:10px;line-height:1.2;}
+.fa55-science-step.is-chosen{background:#2b6c65;border-color:#8fe7cd;color:#fff;font-weight:800;box-shadow:0 0 0 1px #80dbcb66;}
+.fa55-science-note,.fa55-score-footnote{font-size:11px;line-height:1.55;color:#c2dade;margin:0;overflow-wrap:anywhere;}
+.fa55-score-footnote{border-top:1px solid #456574;padding-top:8px;margin-top:10px;}
+.fa55-score-more{margin-top:8px;}
+.fa55-score-more>summary{font-size:11px;padding:8px 6px;cursor:pointer;}
+.fa55-score-more>.fa55-score-item{margin-top:8px;}
+.fa55-science-source{display:inline-block;margin-top:6px;font-size:11px;color:#92e4df;}
+@media(max-width:390px){.fa55-study-scores{padding:9px}.fa55-score-badges>span{font-size:10px;padding:3px 5px}.fa55-science-range{gap:3px}.fa55-science-step{font-size:9px;padding:5px 0}}
+@media(prefers-reduced-motion:reduce){.fa55-study-scores *{transition:none!important}}
+</style>
+<style id="fa59-rank-evidence-visual">
+
+/* v5.4.9: reuse the original intervention evidence visual vocabulary in rankings. */
+.fa59-rank-visual.evidence-row{margin:7px 0 3px;padding:9px;gap:6px;border-color:#3b6066;background:#142e3a;}
+.fa59-rank-visual .evidence-row-main{grid-template-columns:minmax(0,1fr) 78px;gap:10px;align-items:center}
+.fa59-effect-caption{font-size:11px;line-height:1.45;color:#cce5e2;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.fa59-effect-caption strong{font-weight:750;font-variant-numeric:tabular-nums;color:#f1fdfb;font-size:13px}
+.fa59-rank-visual .evidence-step{height:29px}
+.fa59-rank-visual .evidence-grade strong{min-width:45px;font-size:18px}
+.fa59-rank-visual .evidence-grade strong.fa59-grade-range{font-size:14px;letter-spacing:-.02em}
+.fa59-rank-visual .evidence-grade .fa59-grade-label{font-size:10px;line-height:1.2;color:#bdd5d6}
+.fa59-rank-visual .evidence-grade strong.grade-pending{color:#d8e2e5;background:#30404a;border-color:#657987}
+.fa59-rank-visual .evidence-scale[aria-label]{cursor:default}
+.fa59-rank-method-note{margin:0;color:#aecac9;font-size:10.5px;line-height:1.55}
+.fa59-rank-visual .evidence-step.active{box-shadow:0 0 0 1px #c2ffdf70 inset}
+.fa59-rank-content{display:flex;flex-direction:column;gap:2px}
+.fa59-rank-content .fa48-rank-jump{align-self:flex-start;margin-top:2px}
+.fa59-approved-label{display:inline-flex!important;align-items:center;gap:3px;border:1px solid #6ca79b!important;background:#204b45!important;color:#dffdf3!important;font-size:10px!important;font-weight:650!important}
+.fa59-unscored-label{border-color:#83939d!important;background:#283e4b!important;color:#e2e8e9!important}
+@media(max-width:480px){
+ .fa59-rank-visual.evidence-row{padding:7px;gap:5px}
+ .fa59-rank-visual .evidence-row-main{grid-template-columns:minmax(0,1fr) 66px;gap:7px}
+ .fa59-rank-visual .evidence-step{font-size:9px;height:27px}
+ .fa59-rank-visual .evidence-grade strong{min-width:38px;font-size:16px;padding:4px 4px}
+ .fa59-rank-visual .evidence-grade strong.fa59-grade-range{font-size:12px}
+ .fa59-effect-caption{font-size:10px}
+ .fa59-effect-caption strong{font-size:12px}
+ .fa59-rank-number{align-self:flex-start;margin-top:5px}
+}
+@media(prefers-reduced-motion:reduce){.fa59-rank-visual *{transition:none!important}}
+
+</style>
+<style id="fa58-polish">
+/* v5.4.8 — navigation and readability polish. Presentation-only: no scientific data or ranking modification. */
+html{scroll-padding-top:75px}
+.fa58-wayfinding{position:sticky;top:0;z-index:28;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding:8px;max-width:1190px;margin:0 auto 12px;background:rgba(9,19,28,.97);border:1px solid #31545b;border-radius:13px;box-shadow:0 7px 20px #06121b75;backdrop-filter:blur(8px)}
+.fa58-wayfinding a{color:#cce3e6;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:46px;padding:6px 7px;border-radius:8px;border:1px solid transparent;text-align:center;font-size:13px;font-weight:750;line-height:1.25;transition:background .15s ease,border-color .15s ease}
+.fa58-wayfinding a span{display:block;font-size:11px;letter-spacing:.025em;font-weight:550;color:#9fbdc3;margin-top:3px}
+.fa58-wayfinding a:hover,.fa58-wayfinding a:focus-visible{background:#1c3944;border-color:#66b7bc;color:#fff}
+.fa58-wayfinding a:focus-visible{outline:3px solid #99e4d5;outline-offset:2px}
+.fa58-wayfinding a.fa58-library{border-color:#335560;color:#b8f0e5}
+#genreOverview,#mainGraphAnchor,#fa48Ranking,#atlasDirectory{scroll-margin-top:78px}
+/* Form tap targets and reading surfaces: shared JA / EN */
+#genreOverview,#fa48Ranking{border-color:#3e6066!important}
+#genreOverview .genre-head h2,#fa48Ranking .fa48-rank-heading h2{letter-spacing:.015em;line-height:1.42}
+#genreOverview .genre-head p,#fa48Ranking .fa48-rank-heading p{line-height:1.6}
+#genreOverview .genre-ctrl{gap:9px}
+#genreOverview select,#fa48Ranking select,.fa58-wayfinding a{font-family:inherit}
+#genreOverview button,#fa48Ranking button,#fa48Ranking select{touch-action:manipulation}
+#genreOverview button:focus-visible,#fa48Ranking button:focus-visible,#genreOverview select:focus-visible,#fa48Ranking select:focus-visible{outline:3px solid #9de9d6;outline-offset:2px}
+.fa48-rank-tabs{scroll-padding-left:7px;overscroll-behavior-x:contain}
+.fa48-rank-list>li{border-color:#3e636b!important}
+.fa57-rank-legend{line-height:1.65;max-width:80ch}
+.fa55-study-scores{line-height:1.55}
+.fa55-score-badges{flex-wrap:wrap;row-gap:5px}
+#fa48Ranking:target,#genreOverview:target{box-shadow:0 0 0 2px #6cc8bc2b}
+@media(min-width:850px){.fa58-wayfinding{margin-bottom:18px}.fa58-wayfinding a{min-height:53px;font-size:14px}.fa58-wayfinding a span{font-size:11px}}
+@media(max-width:600px){
+ .fa58-wayfinding{top:0;gap:3px;padding:5px;margin:0 3px 11px;border-radius:10px}
+ .fa58-wayfinding a{min-height:44px;padding:6px 2px;font-size:12px}
+ .fa58-wayfinding a span{display:none}
+ .genre-head{gap:10px}
+ #genreOverview .genre-head h2{font-size:17px;line-height:1.45}
+ #genreOverview .genre-head p{font-size:12px}
+ #fa48Ranking .fa48-rank-heading h2{line-height:1.45}
+ .fa48-rank-tabs button{min-height:44px}
+ .fa48-rank-list>li{margin-bottom:8px}
+}
+@media(max-width:335px){.fa58-wayfinding a{font-size:11px;letter-spacing:-.025em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.fa58-wayfinding a{transition:none!important}}
+@media(prefers-contrast:more){.fa58-wayfinding,.fa58-wayfinding a.fa58-library{border-color:#b4e5e1}.fa58-wayfinding a{color:#fff}.fa58-wayfinding a span{color:#e2f2ee}}
+</style>
+</head><body><a class="fa-a11y-skip" href="#atlasMain" id="faA11ySkip">メインコンテンツへ移動</a><div class="atlas"><header class="header"><div><nav aria-label="表示言語 / Interface language" class="fa-locale-toggle" role="group"><a aria-current="page" href="./index.html" id="faLocaleJA" lang="ja">日本語</a><a href="./english/index.html" id="faLocaleEN" lang="en">English</a></nav><div class="eyebrow">TRANSDIAGNOSTIC RESEARCH EXPLORER / FATIGUE EVIDENCE ATLAS</div><h1>FATIGUE <span>Evidence Atlas</span></h1> <a aria-label="ME/CFS Research Atlasを新しいタブで開く" class="fa-bridge-top" href="https://saru02155-design.github.io/reserch-atlas/" rel="noopener noreferrer" target="_blank">ME/CFS Research Atlas ↗</a></div><div class="headright"><div class="counter" id="headerCount">—</div><div>表示中の研究・参考資料（独立した試験数ではありません）</div><div>出典：代表研究・レビュー・診療指針｜結果の方向と確かさは別です</div></div></header>
 <main aria-label="Fatigue Evidence Atlas の研究・探索コンテンツ" class="atlas-main-content" id="atlasMain" tabindex="-1">
 <section aria-label="説明の詳しさを切り替える" class="reading-panel"><div aria-label="説明の詳しさ" class="reading-switch" role="group"><button aria-pressed="false" data-reading="easy" type="button">🌱 かんたん</button><button aria-pressed="true" data-reading="standard" type="button">🔎 標準</button><button aria-pressed="false" data-reading="research" type="button">📑 研究</button></div><p aria-hidden="true" hidden="" id="readingCaption"></p></section>
+<nav class="fa58-wayfinding" aria-label="ページ内の移動と文献への案内"><a class="" href="#genreOverview">全体像<span>疾患・介入を探す</span></a><a class="" href="#mainGraphAnchor">関係図<span>研究のつながり</span></a><a class="" href="#fa48Ranking">ランキング<span>結果を比較</span></a><a class="fa58-library" href="literature/index.html">文献<span>研究の詳細</span></a></nav>
+
 <div aria-label="旧版の切り替え（廃止）" class="modebar" hidden=""><div class="mode-tabs" id="modes"><button class="mode active" id="modeGeneral" type="button">◎ 疾患横断</button><button class="mode" id="modeME" type="button">✳ ME/CFS中心</button></div><div class="mode-caption" id="modeCaption">疾患から介入・疲労の種類へ。研究で検証した接続を表示。</div></div>
 <div aria-hidden="true" class="atlas-coverage-banner" hidden=""><div class="coverage-copy"><strong id="coverageLabel">初期表示：注目の15介入／全介入</strong><span hidden="" id="atlasCoverageText"></span></div><div class="coverage-actions"><button id="relatedShowAll" type="button">全介入を表示</button><button hidden="" id="relatedShowFeatured" type="button">注目の介入に戻る</button></div></div>
 <section aria-hidden="true" aria-label="内部ナビゲーション" class="quick-start" hidden="" id="atlasQuickStart">
@@ -725,7 +855,7 @@ body[data-reading="research"] .genre-treatment .tier-study{display:block}
 <section aria-live="polite" class="atlas-scope-summary" hidden="" id="atlasScopeSummary"><div class="scope-title"><h3 id="atlasScopeTitle"></h3><span id="atlasScopeCount"></span></div><p id="atlasScopeExplanation"></p><div class="scope-links" id="atlasScopeLinks"></div></section>
 <section aria-live="polite" class="atlas-comparison" hidden="" id="atlasComparison"><header class="atlas-comparison-header"><div><span class="atlas-comparison-eyebrow">研究結果を比較</span><h3 id="atlasComparisonTitle"></h3><p id="atlasComparisonNote"></p></div><span class="atlas-comparison-count" id="atlasComparisonCount"></span></header><div class="atlas-comparison-grid" id="atlasComparisonTop"></div><details class="atlas-comparison-more" hidden="" id="atlasComparisonMore"><summary id="atlasComparisonMoreLabel">残りの介入を見る</summary><div class="atlas-comparison-grid" id="atlasComparisonRest"></div></details><nav aria-label="比較の後に調べる" class="compare-next-steps" id="compareNextSteps"></nav></section>
 <div class="genre-expanded" hidden="" id="genreExpanded"><div class="genre-exp-head"><h3 id="genreExpandedTitle"></h3><div class="genre-ctrl"><button class="genre-entity" id="genreBackToMap" type="button">全体図へ ↑</button><button class="genre-entity" id="genreCollapse" type="button">内訳を閉じる ×</button></div></div><p id="genreExpandedText"></p><div class="genre-expanded-relations" id="genreRelationStrip"></div><div class="genre-treatment-list" id="genreTreatmentList"></div></div>
-<section aria-labelledby="fa48RankingTitle" class="fa48-ranking" id="fa48Ranking"><header class="fa48-rank-heading"><div><span class="fa48-eyebrow">研究の見つけ方</span><h2 id="fa48RankingTitle">介入ランキング <small>探索用</small></h2><p>研究の量や報告された結果から並べています。<strong>治療を勧める順位ではありません。</strong></p></div></header><div aria-label="ランキングの対象を絞る" class="fa55-rank-filters" role="group"><label>ジャンル<select id="fa55RankGenre"><option value="follow">選択中と連動</option><option value="all">全ジャンル</option></select></label><label>疾患<select id="fa55RankDisease"><option value="follow">選択中と連動</option><option value="all">全疾患</option></select></label><label>評価項目<select id="fa55RankOutcome"><option value="follow">選択中と連動</option><option value="all">疲労関連（基本）</option></select></label><button id="fa55RankReset" type="button">条件を戻す</button></div><div aria-label="ランキングの種類" class="fa48-rank-tabs" role="tablist"><button aria-controls="fa48RankPanel" aria-selected="true" data-rank="overall" role="tab" tabindex="0" type="button">総合ランキング</button><button aria-controls="fa48RankPanel" aria-selected="false" data-rank="volume" role="tab" tabindex="-1" type="button">研究の多さ</button><button aria-controls="fa48RankPanel" aria-selected="false" data-rank="consistent" role="tab" tabindex="-1" type="button">効果の一貫性</button><button aria-controls="fa48RankPanel" aria-selected="false" data-rank="magnitude" role="tab" tabindex="-1" type="button">効果の大きさ</button></div><p aria-live="polite" class="fa54-rank-scope" id="fa54RankScope">すべてのジャンル</p><p aria-live="polite" class="fa54-rank-endpoint-note" id="fa54RankEndpointNote"></p><p aria-live="polite" class="fa48-rank-summary" id="fa48RankSummary"></p><div aria-labelledby="fa48RankActive" id="fa48RankPanel" role="tabpanel" tabindex="0"><ol class="fa48-rank-list" id="fa48RankTop"></ol><details class="fa48-rank-more" id="fa48RankMore"><summary id="fa48RankMoreSummary">4位以下を見る</summary><ol class="fa48-rank-list" id="fa48RankRest" start="4"></ol></details></div>
+<section aria-labelledby="fa48RankingTitle" class="fa48-ranking" id="fa48Ranking"><header class="fa48-rank-heading"><div><span class="fa48-eyebrow">研究の見つけ方</span><h2 id="fa48RankingTitle">介入ランキング <small>探索用</small></h2><p>研究の量や報告された結果から並べています。<strong>治療を勧める順位ではありません。</strong></p></div></header><div aria-label="ランキングの対象を絞る" class="fa55-rank-filters" role="group"><label>ジャンル<select id="fa55RankGenre"><option value="follow">選択中と連動</option><option value="all">全ジャンル</option></select></label><label>疾患<select id="fa55RankDisease"><option value="follow">選択中と連動</option><option value="all">全疾患</option></select></label><label>評価項目<select id="fa55RankOutcome"><option value="follow">選択中と連動</option><option value="all">疲労関連（基本）</option></select></label><button id="fa55RankReset" type="button">条件を戻す</button></div><div aria-label="ランキングの種類" class="fa48-rank-tabs" role="tablist"><button aria-controls="fa48RankPanel" aria-selected="true" data-rank="overall" role="tab" tabindex="0" type="button">総合ランキング</button><button aria-controls="fa48RankPanel" aria-selected="false" data-rank="volume" role="tab" tabindex="-1" type="button">研究の多さ</button><button aria-controls="fa48RankPanel" aria-selected="false" data-rank="consistent" role="tab" tabindex="-1" type="button">効果の一貫性</button><button aria-controls="fa48RankPanel" aria-selected="false" data-rank="magnitude" role="tab" tabindex="-1" type="button">効果の大きさ</button></div><p aria-live="polite" class="fa54-rank-scope" id="fa54RankScope">すべてのジャンル</p><p aria-live="polite" class="fa54-rank-endpoint-note" id="fa54RankEndpointNote"></p><p aria-live="polite" class="fa48-rank-summary" id="fa48RankSummary"></p><p class="fa57-rank-legend">効果・確実性は、選択した評価項目について掲載研究が示す評価の範囲です。介入全体の統合効果ではなく、「—」は採点できる資料がないことを示します。</p><div aria-labelledby="fa48RankActive" id="fa48RankPanel" role="tabpanel" tabindex="0"><ol class="fa48-rank-list" id="fa48RankTop"></ol><details class="fa48-rank-more" id="fa48RankMore"><summary id="fa48RankMoreSummary">4位以下を見る</summary><ol class="fa48-rank-list" id="fa48RankRest" start="4"></ol></details></div>
 <details class="fa-research-compare" id="faResearchComparison">
 <summary>研究ごとの結果を比較する <span class="fa-research-compare-hint">文献単位の表示・並べ替え</span></summary>
 <div class="fa-research-compare-body">
@@ -1533,9 +1663,98 @@ function fa29EasySummary(parent,t,rows,placement='card',onlyDomain=null){
  }
  add(box,'small','改善の報告があっても、治療の効果が確かになったわけではありません。');if(sorted.length>2)add(box,'small','ほかの結果は「標準」「研究」で確認できます。');
 }
+
+/* FA v5.4.6: F5 approved per-publication effects -- VISUAL ONLY; no ranking or pooled score mutation. */
+
+// Display-only scoped provisional ratings, never ranking or canonical data.
+const atlasProvisionalScores33={"F0C-068":{"score":1,"certainty":"D","reason":"各時点の直接群間差は非有意。睡眠PSQI陽性を疲労の根拠に使わない。","basis":"FSS群×時β=-0.29［-0.58,-0.01］p=.047は改善方向。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-101":{"score":0,"certainty":"D","reason":"独立疲労尺度の数値/CI欠如。37割付、35解析。","basis":"モダフィニルの覚醒・疲労にプラセボ群への優越は見られない。","status":"PROVISIONAL_SCOPED_SCORE"},"SJ05":{"score":0,"certainty":"D","reason":"複合指標は疲労単独ではない。ベースライン調整済み疲労差・CIなし。","basis":"疲労6.0→5.94対6.26→5.72、複合レスポンダー17.9%対17.2%。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-071":{"score":1,"certainty":"D","reason":"CIは0をまたぐ。両群HCV治療であり治療vs無治療の評価ではない。","basis":"FSS-9群間差−3.0［95%CI −6.4,0.4］p=.083は改善方向の点推定。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-126":{"score":0,"certainty":"D","reason":"独立した疲労尺度ではなく、うつ病症状1項目に限定。","basis":"MADRS第7項目lassitudeは全評価時点でプラセボ比較非有意。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-139":{"score":1,"certainty":"D","reason":"疲労尺度固有の推定値は抽出できない。複数指標の混合効果を疲労固有の効果としない。","basis":"非身体的アウトカム群でp<.002、効果量0.4–0.9という陽性シグナル。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-143":{"score":null,"certainty":"X","reason":"群間の疲労比較そのものが提示されず効果方向を判定できない。","basis":"呼吸法群内PFS/VAS p<.05の改善。","status":"NO_VALID_FATIGUE_COMPARISON"},"F0C-149":{"score":1,"certainty":"D","reason":"F2はREADY_DESCRIPTIVE_ONLY。主観的副次尺度、待機対照、認知症状対象で選択。","basis":"8週BFI群間d=-0.47、p<.001は改善方向。","status":"PROVISIONAL_SCOPED_SCORE"},"MS02":{"score":0,"certainty":"D","reason":"PP p=.05をITT上位に置かない。信頼区間未抽出、検出力の限界。","basis":"FSS主要ITT群間p≈.07で優越未確認。","status":"PROVISIONAL_SCOPED_SCORE"},"DIET03":{"score":1,"certainty":"D","reason":"F2はREADY_DESCRIPTIVE_ONLY。非盲検、食事教育複合介入、サプリ単体効果ではない。","basis":"RPFS群×時β=-1.426［-1.959,-0.893］p<.001、d=-0.97で改善方向。","status":"PROVISIONAL_SCOPED_SCORE"},"BIP01":{"score":0,"certainty":"D","reason":"IDS疲労・活力4項目は有意p=.01だが抑うつ領域の混合尺度。27/85脱落。","basis":"FSS調整終点4.27対4.50は有意な群間差なし（監査F2再照合）。","status":"PROVISIONAL_SCOPED_SCORE"},"ED01":{"score":null,"certainty":"X","reason":"独立疲労尺度の群間結果がなくバーンアウトを直接疲労点に流用できない。","basis":"休職・バーンアウト群間非有意。","status":"NO_VALID_FATIGUE_COMPARISON"},"ED03":{"score":1,"certainty":"D","reason":"慢性疲労改善ではない。持続効果6/24時間なし、同一STU不確定。","basis":"単回運動直後の患者群の主観的疲労は減少p<.05。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-058":{"score":1,"certainty":"D","reason":"ベースライン調整差・CI・群間統計未確認。横断群平均の因果推定とはしない。","basis":"FSS介入−対照の報告平均の単純差−0.93は改善方向。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-067":{"score":1,"certainty":"D","reason":"期間別群内比較・持越し・群間CI未確認。安全性長期不明。","basis":"高用量メチルフェニデート期に精神疲労尺度の用量依存改善を報告。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-072":{"score":0,"certainty":"D","reason":"無治療対照の比較ではない。同等性を統計学的に立証したわけではない。","basis":"2種類の抗ウイルス薬でいずれも群内疲労改善、薬剤間差は小さいと報告。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-074":{"score":0,"certainty":"D","reason":"疲労強度の独立尺度なし。活力は代理指標。37/45完遂。","basis":"活力・HQLQ全群間指標で効果なしと報告。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-076":{"score":1,"certainty":"D","reason":"粗解析MD−3.93［−8.33,0.46］p=.08。事後調整・複数比較・非盲検。TP調整p=.07。","basis":"F2全文監査表5でMED調整MD−4.17［−8.18,−0.16］p=.04と符号確定。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-082":{"score":1,"certainty":"D","reason":"急性疲労の方向評価であり慢性疲労治療ではない。親試験副次解析。","basis":"運動直後の疲労は有酸素g=-0.58、筋力g=+0.43、群×時交互作用有意。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-085":{"score":1,"certainty":"X","reason":"MDの符号化・参照群が確認できず、優位方向が反転する可能性。正式比較点は承認禁止。","basis":"F2要約文では有酸素対抵抗運動の一般疲労比較で有酸素優位MD2.2［0.4,4.0］。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-087":{"score":0,"certainty":"D","reason":"実施可能性中心、完遂者解析、群間CI未提示。","basis":"疲労対処自信は完遂者で改善、疲労重症度の群間改善は未確認。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-088":{"score":1,"certainty":"D","reason":"主要内視鏡寛解陰性、臨床寛解は介入群で悪化p=.037。疲労陽性のみで有用/安全と断定しない。","basis":"疲労副次FACIT-F変化中央値+2.5対−3、p=.012（高いほど良好）。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-091":{"score":1,"certainty":"D","reason":"重度掻痒群に限定した事後探索、複数性・親RCTとSTU共有。全PBCへ外挿不能。","basis":"重度掻痒群でPBC40疲労差−8.7、12か月p<.05（F2最終補足）。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-102":{"score":0,"certainty":"D","reason":"急性入院患者、群間推定/CIなし、PMR群内解析をRCT群間効果とはしない。","basis":"PMR群内27人で疲労低下、監査では群間優越性は未提示。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-103":{"score":null,"certainty":"X","reason":"副次解析の群間帰属が不明。MADRS主要陰性を疲労に代用できない。","basis":"ベースライン→終点の疲労改善という探索的報告あり。","status":"NO_VALID_FATIGUE_COMPARISON"},"F0C-106":{"score":0,"certainty":"D","reason":"群内期間比較であり持越し補正された直接差なし。61割付44完遂。","basis":"有効期疲労改善中央値1点p=.61、プラセボ期4点p=.03。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-109":{"score":1,"certainty":"D","reason":"期間順/持越し調整済み推定値欠如、極小n、他報告との独立性未認証。","basis":"サルコイドーシスn=10交差試験FAS p<.02、FACIT-F p<.001と改善報告。","status":"PROVISIONAL_SCOPED_SCORE"},"F0C-114":{"score":1,"certainty":"D","reason":"重症疲労と一般疲労を別EVDに分割。全般的疲労改善と誤読禁止。","basis":"重症疲労の群間改善p=.002、一方一般疲労は群間非有意。","status":"PROVISIONAL_SCOPED_SCORE"},"HD02":{"score":1,"certainty":"D","reason":"慢性疲労尺度なし。n=16交差、透析効率比較は有意でない。","basis":"透析中インターバル運動は持続運動より急性の疲れが少ないp<.05。","status":"PROVISIONAL_SCOPED_SCORE"},"IBD03":{"score":1,"certainty":"X","reason":"2022親論文と2023副次論文で割付139/142・完了116/120が不一致。同一試験系列を重複計上禁止。","basis":"2023年同系列副次解析で疲労ANCOVA F=7.26,p=.008。","status":"PROVISIONAL_SCOPED_SCORE"},"MDD03":{"score":null,"certainty":"X","reason":"睡眠inessと疲労を混同できず、疲労の直接群間尺度なし。","basis":"ESS眠気主要非有意、過眠項目のみ改善。","status":"NO_VALID_FATIGUE_COMPARISON"},"MS03":{"score":2,"certainty":"D","reason":"Table3 CI上限の脱字と抄録/再計算の差が監査内で解決。非盲検の主観尺度、完遂者解析67/78、対照注意なし、効果が過大な恐れ。","basis":"F2監査でFSS 9–63総得点、4週群間MD−21.58、d≈−2.80、群間p<.01を確認。","status":"PROVISIONAL_SCOPED_SCORE"},"SJ03":{"score":null,"certainty":"X","reason":"単独疲労尺度の群間比較が記録されていない。MI複合を直接疲労と同一視しない。","basis":"MI複合レスポンダー39.8%対36.8%、調整OR1.13［0.50,2.55］。","status":"NO_VALID_FATIGUE_COMPARISON"}};
+
+function fa55RenderF5StudyRatings(parent,rows,placement='card',onlyDomain=null){
+ const en=document.documentElement.lang.toLowerCase().startsWith('en');
+ const f5=(rows||[]).filter(st=>st.atlas_new_render && st.atlas_map_classification &&
+   (!onlyDomain||(st.v28?.edges||[]).some(e=>e.domain===onlyDomain)));
+ if(!f5.length)return false;
+ const section=add(parent,'section','','fa55-study-scores evidence-row');
+ section.dataset.f5Count=String(f5.length);
+ section.setAttribute('aria-label',en?'Per-study effect and certainty':'研究別の効果点と確実性');
+ const title=add(section,'div','','fa55-score-head');
+ add(title,'strong',en?'Per-study effect & certainty':'研究別の効果・確実性');
+ add(title,'span',en?f5.length+' studies | individual':f5.length+'件｜研究単位','fa55-score-count');
+ const list=add(section,'div','','fa55-score-list');
+ function item(st,host){
+  const v=st.atlas_new_render,q=st.atlas_map_classification||{};
+  const receipt=st.f5_science_score;
+  const approved=!!(v.F3_effect_approved && receipt &&
+    Number.isInteger(receipt.score) && receipt.score>=-3 && receipt.score<=3 &&
+    ['A','B','C','D'].includes(receipt.certainty));
+  const ar=add(host,'article','','fa55-score-item');
+  ar.dataset.candidateId=v.candidate_id;
+  ar.dataset.scoreApproved=String(approved);
+  ar.dataset.score=approved?String(receipt.score):'unscored';
+  ar.dataset.certainty=approved?receipt.certainty:'unscored';
+  const label=add(ar,'div','','fa55-score-study-name');
+  add(label,'span',v.title||v.candidate_id);
+  const badges=add(ar,'div','','fa55-score-badges');
+  const score=add(badges,'span','','fa55-science-effect'+(approved?'':' fa55-science-pending'));
+  const scoreText=!approved?'—':receipt.score>0?(en?'+':'＋')+receipt.score:String(receipt.score);
+  add(score,'span',(en?'Effect ':'効果 ')+scoreText);
+  const grade=add(badges,'span',(en?'Certainty ':'確実性 ')+(approved?receipt.certainty:'—'),'fa55-science-certainty'+(approved?' grade-'+receipt.certainty.toLowerCase():''));
+  add(badges,'span',approved?(en?'Approved research score':'科学承認済み'):(en?'Unscored':'正式未採点'),approved?'fa59-approved-label':'fa59-approved-label fa59-unscored-label');
+  const layer=q.outcome_layer==='direct'?(en?'Direct-fatigue candidate':'直接疲労比較の候補'):q.outcome_layer==='related'?(en?'Related; directness unverified':'関連・直接性未認証'):(en?'Related literature':'関連文献');
+  add(badges,'span',layer,'fa55-science-layer');
+  const range=add(ar,'div','','fa55-science-range');
+  range.setAttribute('aria-label',approved?(en?`Per-study effect score ${receipt.score} on -3 to +3, certainty ${receipt.certainty}`:`研究別効果点 ${receipt.score}（−3〜＋3）、確実性 ${receipt.certainty}`):(en?'Per-study effect and certainty not scored':'研究別効果点・確実性は未採点'));
+  for(let v=-3;v<=3;v++){
+   const dot=add(range,'span',v>0?'+'+v:String(v),'fa55-science-step'+(approved&&v===receipt.score?' is-chosen':''));
+   if(approved&&v===receipt.score)dot.setAttribute('aria-current','true');
+   else dot.setAttribute('aria-hidden','true');
+  }
+  let note=en?(!approved?'No comparable fatigue effect rating. Unscored does not mean zero effect.':receipt.score===0?'This rating indicates no demonstrated superiority; it does not prove zero effect.':receipt.score>0?'Improvement-direction research rating, not an effect size or recommendation.':'Worsening-direction rating; harm is not established.') :(!approved?'疲労について比較可能な効果点・確実性は未採点です。未採点は効果ゼロではありません。':
+   receipt.score===0?'比較群への上乗せを確認できなかった評価です。効果が厳密にゼロと証明された意味ではありません。':
+   receipt.score>0?'改善方向の研究単位評価です。効果量や治療推奨を意味しません。':
+   '悪化方向の研究単位評価です。害の確立を意味しません。');
+  if(q.outcome_layer==='related')note+=en?' Related evidence must not be extrapolated to the parent intervention.':'同系統・関連研究のため、そのまま親介入全体の直接効果とは扱いません。';
+  add(ar,'p',note,'fa55-science-note');
+  if(!approved && atlasProvisionalScores33[v.candidate_id]){
+   const pending=atlasProvisionalScores33[v.candidate_id];
+   const sanitize=(text)=>String(text||'').replace(/F2はREADY_DESCRIPTIVE_ONLY/g,'既存の科学承認範囲が記述限定').replace(/F2(?:全文|最終)?(?:再)?監査(?:表\d+)?/g,'原著の保存確認').replace(/\bF[2356]\b/g,'内部工程').replace(/STU/g,'同一試験系列');
+   const provisional=add(ar,'div','','fa57-provisional');provisional.dataset.certainty=pending.certainty;
+   provisional.dataset.previewScore=pending.score===null?'null':String(pending.score);
+   const scoreText=pending.score===null?'—':(pending.score>0?'+':'')+pending.score;
+   const label=pending.score===null?(en?'Not evaluable':'比較効果は評価不能'):
+    (en?'Provisional effect ':'暫定比較点 ')+scoreText;
+   add(provisional,'strong',label+' / '+(en?'Provisional certainty ':'暫定確実性 ')+pending.certainty);
+   add(provisional,'p',en?'Not scientifically approved; excluded from rankings. The score above remains unscored.':'未承認の参考判定です。上欄の正式効果点は未採点のままです。ランキング対象外。','fa57-provisional-note');
+   if(readingLevel==='research'){
+    const d=add(provisional,'details','','fa57-provisional-reason');
+    add(d,'summary',en?'Evidence limitations (Japanese source record)':'暫定判定の留保理由');
+    add(d,'p',sanitize(pending.reason));
+    add(d,'p','保存済みの比較根拠：'+sanitize(pending.basis));
+   }
+  }
+
+  if(readingLevel==='research'){
+   const link=add(ar,'a',en?'Original study ↗':'原著を見る ↗','fa55-science-source');
+   link.href=v.source_url||('https://pubmed.ncbi.nlm.nih.gov/'+v.source_pmid+'/');
+   link.rel='noopener noreferrer';link.target='_blank';
+  }
+ }
+ for(const st of f5.slice(0,3))item(st,list);
+ if(f5.length>3){
+  const fold=add(section,'details','','fa55-score-more');
+  add(fold,'summary',en?`Show ${f5.length-3} additional studies`:`残り${f5.length-3}件の研究評価を見る`);
+  for(const st of f5.slice(3))item(st,fold);
+ }
+ add(section,'p',en?'Officially scored studies show F3-approved Atlas ratings (not standardised effect sizes). Unscored studies may have separate, explicitly provisional notes. Neither contributes to new rankings or independent trial counts; full English scientific translation is pending.':'正式承認済み研究には科学評価点と確実性を表示し、未採点研究の暫定方向は別枠で表示します。標準化効果量・GRADE正式評価ではなく、いずれも独立試験数・ランキングへの新規加算はありません。','fa55-score-footnote');
+ return true;
+}
+
 function renderEvidenceSnapshot(parent,t,rows,placement='card',onlyDomain=null){
- if(readingLevel==='easy'){fa29EasySummary(parent,t,rows,placement,onlyDomain);return;} 
- const groups=outcomeEvidenceGroups(rows).filter(([domain])=>!onlyDomain||domain===onlyDomain);
+ const f5Shown=fa55RenderF5StudyRatings(parent,rows,placement,onlyDomain);
+ const legacyRows=f5Shown?(rows||[]).filter(st=>!st.atlas_new_render):rows;
+ if(!legacyRows||!legacyRows.length)return;
+ if(readingLevel==='easy'){fa29EasySummary(parent,t,legacyRows,placement,onlyDomain);return;} 
+ const groups=outcomeEvidenceGroups(legacyRows).filter(([domain])=>!onlyDomain||domain===onlyDomain);
  if(!groups.length)return;
  const host=add(parent,'section','','evidence-snapshot'+(placement==='drawer'?' evidence-snapshot--drawer':''));
  host.dataset.summaryCount=String(groups.length);
@@ -2938,7 +3157,7 @@ function fa55RankScopedData(){
   const volume=Math.log2(1+sourceSet.size);
   const quality=scores.length?(scores.filter(x=>x.grade==='B').length+.6*scores.filter(x=>x.grade==='C').length+.2*scores.filter(x=>x.grade==='D').length)/scores.length:0;
   const overall=volume*.9+agreement*(eligibleConsistency?1.7:.65)+Math.min(3,avgMagnitude)*.65+quality*.8-(bad.length?.45:0);
-  return {t,n:relevant.length,allCount:rows.length,allSources:allSourceSet.size,sources:sourceSet.size,scores:scores.length,good:good.length,neutral:neutral.length,bad:bad.length,agreement,eligibleConsistency,volume,quality,avgMagnitude,overall};
+  return {t,n:relevant.length,allCount:rows.length,allSources:allSourceSet.size,sources:sourceSet.size,scores:scores.length,good:good.length,neutral:neutral.length,bad:bad.length,agreement,eligibleConsistency,volume,quality,avgMagnitude,overall,displayRatings:scores.map(x=>({score:x.score,grade:x.grade}))};
  });
 }
 function fa48RankSorted(mode){
@@ -2983,14 +3202,52 @@ function fa54OpenRankedIntervention(id){
   heading.focus({preventScroll:true});
  }));
 }
+function fa57RankRating(item){
+ const es=(item.displayRatings||[]).map(v=>Number(v.score)).filter(Number.isFinite);
+ const grades=[...new Set((item.displayRatings||[]).map(v=>v.grade).filter(g=>['A','B','C','D'].includes(g)))].sort((a,b)=>'ABCD'.indexOf(a)-'ABCD'.indexOf(b));
+ const txt=v=>v>0?'＋'+v:v<0?'−'+Math.abs(v):'0';
+ const lo=es.length?Math.min(...es):null,hi=es.length?Math.max(...es):null;
+ return {effect:lo===null?'—':lo===hi?txt(lo):txt(lo)+'〜'+txt(hi),certainty:grades.length?grades[0]+(grades.at(-1)===grades[0]?'':'〜'+grades.at(-1)):'—',tone:lo===null?'pending':hi<0?'negative':lo>0?'positive':'mixed'};
+}
 function fa48FillRankList(list,items,start){list.replaceChildren();
+ const en=document.documentElement.lang==='en';
+ const scoreLabel=n=>n>0?'＋'+n:n<0?'−'+Math.abs(n):'0';
  items.forEach((item,index)=>{
   const li=document.createElement('li');li.className='fa48-rank-item';
-  const n=document.createElement('span');n.className='fa48-rank-number';n.textContent=String(start+index);
-  const body=document.createElement('div');body.className='fa48-rank-content';const h=document.createElement('div');h.className='fa48-rank-name';h.textContent=item.t.name;
-  const desc=document.createElement('div');desc.className='fa48-rank-evidence';desc.textContent=fa48RankDetail(item,fa48ActiveRank);body.append(h,desc);
-  const btn=document.createElement('button');btn.className='fa48-rank-jump';btn.type='button';btn.textContent='介入を見る';btn.setAttribute('aria-label',`${item.t.name}の研究結果と詳細へ移動`);
-  btn.addEventListener('click',()=>fa54OpenRankedIntervention(item.t.id));li.append(n,body,btn);list.append(li);
+  const n=document.createElement('span');n.className='fa48-rank-number fa59-rank-number';n.textContent=String(start+index);
+  const body=document.createElement('div');body.className='fa48-rank-content fa59-rank-content';
+  const h=document.createElement('div');h.className='fa48-rank-name';h.textContent=item.t.name;
+  const r=fa57RankRating(item);
+  const allowed=(item.displayRatings||[]).filter(v=>Number.isInteger(Number(v.score))&&Number(v.score)>=-3&&Number(v.score)<=3&&['A','B','C','D'].includes(v.grade));
+  const values=[...new Set(allowed.map(v=>Number(v.score)))];
+  const certainty=[...new Set(allowed.map(v=>v.grade))].sort((a,b)=>'ABCD'.indexOf(a)-'ABCD'.indexOf(b));
+  // Visual evidence snapshot uses exactly the same seven-step + grade tokens as the original intervention card.
+  // No change to item.overall, ranking order, study counts, or official independent STU.
+  const visual=document.createElement('div');visual.className='fa59-rank-visual evidence-row';
+  const caption=document.createElement('div');caption.className='fa59-effect-caption';
+  const key=document.createElement('span');key.textContent=en?'Effect':'効果';
+  const val=document.createElement('strong');val.textContent=r.effect;
+  caption.append(key,val);
+  const main=document.createElement('div');main.className='evidence-row-main';
+  const scale=document.createElement('div');scale.className='evidence-scale';scale.setAttribute('role','img');
+  scale.setAttribute('aria-label',en?`Effect range ${r.effect}; assessed study scores on minus 3 to plus 3. Not a pooled effect.`:`効果 ${r.effect}。−3から＋3の研究別評価の範囲。統合した効果量ではありません。`);
+  for(let i=-3;i<=3;i++){
+   const step=document.createElement('span');
+   step.textContent=scoreLabel(i);
+   step.className='evidence-step'+(values.includes(i)?' active '+(i>0?'positive':i<0?'negative':'neutral'):'');
+   step.setAttribute('aria-hidden','true');
+   scale.append(step);
+  }
+  const grade=document.createElement('div');grade.className='evidence-grade';
+  const gradeValue=document.createElement('strong');
+  gradeValue.className=certainty.length===1?'grade-'+certainty[0].toLowerCase():certainty.length?'fa59-grade-range':'grade-pending';
+  gradeValue.textContent=r.certainty;
+  const gradeLabel=document.createElement('span');gradeLabel.className='fa59-grade-label';gradeLabel.textContent=en?'Certainty':'確実性';
+  grade.append(gradeValue,gradeLabel);main.append(scale,grade);visual.append(caption,main);
+  const btn=document.createElement('button');btn.className='fa48-rank-jump';btn.type='button';btn.textContent=en?'Details ↗':'詳細を見る ↗';
+  btn.setAttribute('aria-label',en?`View evidence and details for ${item.t.name}`:`${item.t.name}の研究結果と詳細へ移動`);
+  btn.addEventListener('click',()=>fa54OpenRankedIntervention(item.t.id));
+  body.append(h,visual,btn);li.append(n,body);list.append(li);
  });
 }
 function fa48RenderRank(){const data=fa48RankSorted(fa48ActiveRank);

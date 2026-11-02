@@ -829,6 +829,29 @@ html{scroll-padding-top:75px}
 .drawer-summary-card.fa-parent-summary .evidence-row{background:#2b2944!important;border-color:#716489!important}
 @media(max-width:850px){.fa-title-row{gap:10px}.fa-title-metrics{width:auto;max-width:100%}.fa-title-metric{min-width:116px;padding:8px 11px}.fa-title-metric strong{font-size:18px}.fa-title-metric span{font-size:8.5px}}
 @media(max-width:390px){.fa-title-metric{min-width:0;flex:1}.fa-title-metrics{width:100%}}
+</style><style id="fa-child-card-restoration">
+/* v5.4.16: Restore original intervention cards within the existing violet parent details. */
+.fa-child-cards-fold{margin:12px 0 3px;border:1px solid #8773b5;border-radius:12px;background:#302941;min-width:0;overflow:hidden}
+.fa-child-cards-summary{cursor:pointer;list-style:revert;min-height:46px;padding:12px 13px;color:#efe4ff;font-size:14px;font-weight:750;line-height:1.5}
+.fa-child-cards-summary:focus-visible,.fa-child-original-summary:focus-visible,.fa-child-original-studies>summary:focus-visible{outline:3px solid #dfd1ff;outline-offset:-3px}
+.fa-child-cards-list{display:grid;gap:9px;padding:8px 10px 12px;min-width:0}
+.fa-child-original-card{border:1px solid #71658c;border-radius:11px;background:#1a2939;min-width:0;overflow:hidden}
+.fa-child-original-summary{cursor:pointer;list-style:revert;min-height:44px;padding:11px 12px;font-size:13px;color:#f2eaff;font-weight:700;line-height:1.55;overflow-wrap:anywhere}
+.fa-child-original-body{border-top:1px solid #514765;padding:9px 10px 13px;min-width:0;overflow-wrap:anywhere}
+.fa-child-original-description{font-size:13px;line-height:1.7;color:#e5eaf1}
+.fa-child-original-caution{border-left:3px solid #b3a0ce;padding:8px 10px;background:#2d3042;color:#e8e1ec;border-radius:0 7px 7px 0;font-size:12px;line-height:1.7;margin:8px 0}
+.fa-child-original-caution p{margin:4px 0}
+.fa-child-original-evidence{min-width:0}
+.fa-child-original-studies{margin-top:11px;border:1px solid #4a6271;border-radius:9px;padding:0 10px}
+.fa-child-original-studies>summary{cursor:pointer;padding:12px 0;color:#bcf1e4;font-weight:700;font-size:12px}
+.fa-child-original-study-list{display:grid;gap:8px;padding:0 0 11px}
+.fa-child-original-study{border:1px solid #405d6e;background:#112a38;border-radius:8px;padding:10px;font-size:12px;line-height:1.7;color:#d6e7e6;min-width:0;overflow-wrap:anywhere}
+.fa-child-original-study-title{display:block;color:#f0faf5}
+.fa-child-original-study p{margin:6px 0}
+.fa-child-original-link{display:inline-block;color:#b1f4ea;font-size:12px;margin-top:5px;overflow-wrap:anywhere}
+.drawer-summary-card .fa-child-cards-fold{margin:10px 0 0}
+.drawer-summary-card .fa-child-original-evidence .evidence-row{background:#122d3b;border-color:#3c6676}
+@media(max-width:480px){.fa-child-cards-summary{padding:12px 10px}.fa-child-cards-list{padding:7px}.fa-child-original-body{padding:8px}.fa-child-original-evidence .evidence-row-main{grid-template-columns:minmax(0,1fr) 55px}}
 </style></head><body><a class="fa-a11y-skip" href="#atlasMain" id="faA11ySkip">メインコンテンツへ移動</a><div class="atlas"><header class="header"><div><div class="eyebrow">TRANSDIAGNOSTIC RESEARCH EXPLORER / FATIGUE EVIDENCE ATLAS</div><div class="fa-title-row"><h1>FATIGUE <span>Evidence Atlas</span></h1><div class="fa-title-metrics" aria-label="Total indexed intervention groups and research records"><div class="fa-title-metric"><strong id="faTitleInterventionTotal">—</strong><span>INTERVENTION GROUPS</span></div><div class="fa-title-metric"><strong id="faTitleResearchTotal">—</strong><span>RESEARCH RECORDS</span></div></div></div> <a aria-label="ME/CFS Research Atlasを新しいタブで開く" class="fa-bridge-top" href="https://saru02155-design.github.io/reserch-atlas/" rel="noopener noreferrer" target="_blank">ME/CFS Research Atlas ↗</a></div><div class="headright"><div class="counter" id="headerCount">—</div><div>現在の表示条件に該当する資料行数（独立試験数ではありません）</div><div>出典：代表研究・レビュー・診療指針｜結果の方向と確かさは別です</div></div></header>
 <main aria-label="Fatigue Evidence Atlas の研究・探索コンテンツ" class="atlas-main-content" id="atlasMain" tabindex="-1">
 <section aria-label="説明の詳しさを切り替える" class="reading-panel"><div aria-label="説明の詳しさ" class="reading-switch" role="group"><button aria-pressed="false" data-reading="easy" type="button">🌱 かんたん</button><button aria-pressed="true" data-reading="standard" type="button">🔎 標準</button><button aria-pressed="false" data-reading="research" type="button">📑 研究</button></div><p aria-hidden="true" hidden="" id="readingCaption"></p></section>
@@ -2373,6 +2396,7 @@ function openDetails(id){const n=lookup.get(id);if(!n)return;const d=$('drawer')
   const visible=n.studies.filter(st=>uiStudyVisible(st,n));
   if(n.faParent&&window.__faFamilyRenderer)window.__faFamilyRenderer(summaryCard,n,visible);else renderEvidenceSnapshot(summaryCard,n,visible,'drawer');
   if(!summaryCard.querySelector('.evidence-row'))add(summaryCard,'p','現在の条件に該当する研究結果はありません。','note');
+  if(n.faParent&&window.__faFamilyChildCards)window.__faFamilyChildCards(summaryCard,n);
  }
  $('detailToggle').textContent=n.faParent?'介入方法・対象別の研究を詳しく見る ⌄':n.type==='i'?'研究条件・出典などの詳細を見る ⌄':'疾患・アウトカムの詳細を見る ⌄';
  $('drawPeek').textContent=(n.type==='i'&&readingLevel==='easy')?(readingDescriptions[n.id]||n.mini):(n.type==='i'&&readingLevel!=='research')?(readingDescriptions[n.id]||n.mini)+'　'+tierFinding(n,n.studies.filter(s=>uiStudyVisible(s,n))):n.description;const aq=$('auditQuick');aq.hidden=true;aq.replaceChildren();if(n.type==='i'){const relevant=n.studies.filter(s=>uiStudyVisible(s,n));const issues=relevant.filter(s=>s.audit?.state==='issue');const box=add(aq,'div',`関連研究など${relevant.length}件｜改善報告${relevant.filter(s=>selectedOutcomeLinks(s).some(e=>e.direction==='good')).length}・良いとは確認できず${relevant.filter(s=>selectedOutcomeLinks(s).some(e=>e.direction==='bad')).length}・その他${relevant.filter(s=>!selectedOutcomeLinks(s).some(e=>['good','bad'].includes(e.direction))).length}（独立試験数ではありません）`,'audit-quick-count');if(issues.length){add(aq,'div','⚠ 要注意・未解決 '+issues.length+'行：'+issues.map(s=>s.audit.flag||s[2]).slice(0,2).join('／'),'audit-quick-flag')}aq.hidden=false}$('drawType').textContent=readingLevel==='easy'?(n.type==='i'?'どんな方法？':n.type==='d'?'病気・状態':'調べたこと'):readingLevel==='standard'?(n.type==='i'?'介入・治療法':n.type==='d'?'対象の疾患・状態':'研究で測定した内容'):n.type==='i'?'INTERVENTION / 介入':n.type==='d'?'CONDITION / 疾患・状態':'DOMAIN / 疲労・機序領域';$('drawTitle').textContent=n.name;$('drawMini').textContent=readingLevel==='easy'&&n.type==='i'?(readingDescriptions[n.id]||n.mini):n.mini;const body=$('drawBody');body.replaceChildren();const h=t=>add(body,'h3',t),p=(t,cls='desc')=>add(body,'div',t,cls);
@@ -2718,7 +2742,7 @@ function genreExpand(data){const detail=document.getElementById('genreExpanded')
  }
  for(const [cardIndex,t] of group.items.entries()){const studies=t.studies.filter(s=>genreStudyOK(s,t));const d=[...new Set(studies.flatMap(s=>faStudyDiseaseIds(s).map(id=>lookup.get(id)?.name)))].filter(Boolean);const allEdges=studies.flatMap(s=>selectedOutcomeLinks(s).map(e=>({e,s})));
   const os=[...new Set(allEdges.map(({e})=>ENDPOINT_NAMES[e.domain]))];const statuses=[...new Set(allEdges.map(({e})=>normalStatus(e.direction)))];
-  const card=document.createElement('article');card.className='genre-treatment'+(t.faParent?' fa-parent-group-card':'');card.dataset.treatmentId=t.id;const h=document.createElement('div');h.className='genre-treatment-title';const tname=document.createElement('span');tname.textContent=t.name;const cnt=document.createElement('small');cnt.textContent=`${fa48Subcategory(t)} · 関連報告 ${studies.length}件`; h.append(tname,cnt);card.append(h);tierRenderCard(card,t,studies);if(t.faParent){const fd=document.createElement('details');fd.className='fa-parent-variants';const fs=document.createElement('summary');fs.textContent=`介入方法・研究条件の違い（${t.faParentMembers.length}種類）`;fd.append(fs);for(const m of t.faParentMembers){const dd=document.createElement('div');dd.className='fa-parent-variant';const h=document.createElement('strong');h.textContent=m.name;const p=document.createElement('p');p.textContent=m.caution||m.mini||'';dd.append(h,p);for(const s of m.studies){const a=document.createElement('a');a.textContent=s[2]||'原著・出典';a.href=s[5]||'#';a.rel='noopener noreferrer';a.target='_blank';dd.append(a);}fd.append(dd)}card.append(fd)}
+  const card=document.createElement('article');card.className='genre-treatment'+(t.faParent?' fa-parent-group-card':'');card.dataset.treatmentId=t.id;const h=document.createElement('div');h.className='genre-treatment-title';const tname=document.createElement('span');tname.textContent=t.name;const cnt=document.createElement('small');cnt.textContent=`${fa48Subcategory(t)} · 関連報告 ${studies.length}件`; h.append(tname,cnt);card.append(h);tierRenderCard(card,t,studies);if(t.faParent&&window.__faFamilyChildCards)window.__faFamilyChildCards(card,t);
   const p1=document.createElement('div');p1.className='rel';p1.textContent='疾患：'+(d.join('・')||'—');card.append(p1);
 if(studies.some(s=>s.faPopulationCase)){const n=document.createElement('div');n.className='rel';n.textContent='※混合集団の結果は、各疾患だけに対する効果を示すものではありません。';card.append(n);}
   const p2=document.createElement('div');p2.className='rel';p2.textContent='実測：'+(os.join('・')||'—');card.append(p2);
@@ -3464,6 +3488,55 @@ function render(){
  }
  }
 window.__faFamilyRenderer=(target,t,visible)=>{const summary=create('section','evidence-snapshot',null,target);const data=collectEvidence([{studies:visible||t.studies}]);for(const a of data.slice(0,3))buildScore(a,summary);if(!data.length)create('p','evidence-conclusion','研究別の効果・確実性は関連する方法別の欄で確認できます。',summary)};
+window.__faFamilyChildCards=(target,t)=>{
+ if(!t?.faParent||!Array.isArray(t.faParentMembers))return;
+ const wrap=create('details','fa-child-cards-fold',null,target);
+ const label=create('summary','fa-child-cards-summary',`元の介入カードを見る（${t.faParentMembers.length}種類）`,wrap);
+ label.setAttribute('aria-label',`${t.name}：元の介入カードを${t.faParentMembers.length}種類表示`);
+ const list=create('div','fa-child-cards-list',null,wrap);
+ let built=false;
+ wrap.addEventListener('toggle',()=>{
+  if(!wrap.open||built)return;
+  built=true;
+  for(const m of t.faParentMembers){
+   const child=create('details','fa-child-original-card',null,list);
+   create('summary','fa-child-original-summary',`${m.name}（研究・資料 ${m.studies?.length||0}件）`,child);
+   const inner=create('div','fa-child-original-body',null,child);
+   if(m.description)create('p','fa-child-original-description',m.description,inner);
+   if(m.caution){const caution=create('div','fa-child-original-caution',null,inner);create('strong','', '注意点・制約',caution);create('p','',m.caution,caution)}
+   const evidence=create('section','fa-child-original-evidence',null,inner);
+   api.renderEvidenceSnapshot(evidence,m,m.studies||[],'card');
+   const studies=create('details','fa-child-original-studies',null,inner);
+   create('summary','',`研究条件・結果・出典（${m.studies?.length||0}件）`,studies);
+   const items=create('div','fa-child-original-study-list',null,studies);
+   for(const s of (m.studies||[])){
+    const item=create('article','fa-child-original-study',null,items);
+    create('strong','fa-child-original-study-title',s[2]||'研究・参考資料',item);
+    const population=typeof api.faStudyPopulationLabel==='function'?api.faStudyPopulationLabel(s):'原著参照';
+    create('p','',`対象：${population}`,item);
+    if(s[3])create('p','',`結果：${s[3]}`,item);
+    if(s[4])create('p','',`実施・比較条件：${s[4]}`,item);
+    if(s.atlas_new_render){
+     const info=s.atlas_new_render;
+     const design=info.study_design||'';
+     if(design)create('p','',`研究デザイン：${design}`,item);
+    }
+    const rr=s.reader||s.three_reader_modes_ja||{};
+    const mode=api.reading();
+    const explanation=rr[mode]||rr[mode==='easy'?'simple':mode];
+    if(typeof explanation==='string'&&explanation.trim()){
+     create('p','fa-child-original-reader',`${mode==='easy'?'かんたん':mode==='research'?'研究':'標準'}解説：${explanation}`,item);
+    }
+    const url=s[5];
+    if(typeof url==='string'&&/^https:\/\//i.test(url)){
+     const a=create('a','fa-child-original-link','原著・出典を開く ↗',item);
+     a.href=url;a.target='_blank';a.rel='noopener noreferrer';
+    }
+   }
+  }
+ });
+ return wrap;
+};
 // Parent card rendering is available in the atlas drawer; no duplicate standalone catalogue.
 
 })();

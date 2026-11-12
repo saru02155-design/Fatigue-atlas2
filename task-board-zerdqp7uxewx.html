@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#292235"/><title>油屋の帳場 — 今日のやること手帖 v1.5</title>
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#292235"/><title>油屋の帳場 — 今日のやること手帖 v1.6</title>
 <style>
 :root{color-scheme:light dark;--bg:#f8fafc;--surface:#fff;--sub:#f1f5f9;--ink:#1d2939;--muted:#68778b;--line:#dfe5ed;--accent:#267c70;--tint:#e7f5f0;--shadow:0 8px 24px rgba(30,41,59,.06)}
 @media(prefers-color-scheme:dark){:root{--bg:#151a20;--surface:#20262f;--sub:#2a323d;--ink:#edf1f6;--muted:#a3b0c0;--line:#3b4653;--accent:#6cc5ad;--tint:#24483f;--shadow:none}}
@@ -267,7 +267,7 @@ body{background:#101727;background-image:linear-gradient(180deg,rgba(9,18,36,.43
 @media(max-width:860px){.app{padding:10px 9px 28px}.bathhouse-hero{min-height:260px;padding:18px 15px 27px;gap:10px}.hero-mark{width:48px;height:59px;flex:0 0 48px;font-size:31px}.hero-copy h1{font-size:26px!important;line-height:1.35}.hero-copy .hint{font-size:11px!important}.bathhouse-hero .eyebrow{font-size:9px}.bathhouse-hero .pill{position:absolute;right:13px;top:15px;font-size:10px;padding:7px 8px;max-width:120px}.hero-copy{padding-top:70px;margin-left:-56px}.bathhouse-hero{background-position:65% center}.lane{min-height:420px}.board{min-width:1100px}.details{padding:13px}.reward-seal{font-size:18px;padding:12px 14px;gap:10px}.reward-seal .stamp-face-wrap{width:64px;height:64px}}
 @media(max-width:580px){.add{padding:8px}.add input{flex-basis:100%;min-height:41px}.bar{align-items:center}.tabs{width:100%}.tabs button{flex:1;min-width:0;font-size:11px}.bar .smallnote{max-width:unset;text-align:left}.stats{gap:10px}.stat strong{font-size:16px}.stagebuttons{grid-template-columns:repeat(2,minmax(0,1fr))}.safety{gap:6px}.safety .btn{width:100%}.today-done-row{align-items:flex-start}.bathhouse-hero:after{left:15px;font-size:8px}.hero-copy h1{font-size:22px!important}.hero-copy .hint{line-height:1.35}}
 
-/* v1.5: UI reduction and actual bathhouse background */
+/* v1.6: UI reduction and actual bathhouse background */
 .bathhouse-hero{
   border:0!important;border-radius:0!important;outline:0!important;
   box-shadow:none!important;margin:0 0 12px!important;
@@ -361,7 +361,7 @@ body{background:#101727;background-image:linear-gradient(180deg,rgba(9,18,36,.43
 }
 @media(max-width:400px){.hero-copy h1{font-size:21px!important;max-width:190px!important}.hero-backup{min-width:111px!important;font-size:10px!important}}
 
-/* v1.5: visible completion log and real calendar time-density controls */
+/* v1.6: visible completion log and real calendar time-density controls */
 .today-done{display:block!important;position:relative;margin:8px 0 14px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 #toggleTodayDone{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:43px;text-align:left;padding:9px 15px!important;color:#583b2c!important;background:linear-gradient(175deg,rgba(252,228,188,.97),rgba(219,167,108,.96))!important;border:2px solid #875338!important;border-radius:8px!important;font-weight:800;box-shadow:inset 0 1px 0 #ffeccc,0 3px 0 #503022!important}
 #todayDoneCount{display:inline-block;padding:2px 8px;border:1px solid #9b6f4b;border-radius:99px;font-size:12px;background:rgba(255,252,233,.65)}
@@ -380,7 +380,7 @@ body{background:#101727;background-image:linear-gradient(180deg,rgba(9,18,36,.43
 @media(max-width:600px){.cal-zoom{gap:6px}.cal-zoom .cal-zoom-button{width:36px}}
 
 
-/* v1.5: completion log legibility and actionable card preview */
+/* v1.6: completion log legibility and actionable card preview */
 #todayDoneList{background:#fff7e7!important;color:#35241d!important;opacity:1!important;}
 #todayDoneList .today-done-row{
  display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
@@ -405,17 +405,65 @@ body{background:#101727;background-image:linear-gradient(180deg,rgba(9,18,36,.43
  .card-next{font-size:10px;}
 }
 
+
+/* v1.6 · calendar-only events, dense concurrent lanes and compact history */
+.cal-event-editor{display:flex;align-items:center;flex-wrap:wrap;gap:7px;padding:9px 10px;background:linear-gradient(150deg,#fae6c8,#f2d5b1);border:1px solid #ad805f;border-radius:8px;box-shadow:0 3px 8px #44282221}
+.cal-event-title{font-size:12px;font-weight:850;color:#78452f;margin-right:3px;white-space:nowrap}
+.cal-event-editor input,.cal-event-editor select{font:inherit;border:1px solid #b89576;border-radius:6px;background:#fff9ee;color:#493127;padding:7px;min-height:35px}
+#calEventTitle{flex:1 1 155px;min-width:105px}
+#calEventTime{max-width:118px;min-width:110px}
+.cal-event-editor button{white-space:nowrap}
+#calTimeline{--cal-slot-height:52px}
+#calTimeline .cal-slot{min-height:var(--cal-slot-height)!important;height:auto!important;box-sizing:border-box}
+#calTimeline .cal-slot-body{min-width:0;min-height:calc(var(--cal-slot-height) - 1px)!important;box-sizing:border-box;display:grid!important;grid-template-columns:repeat(var(--cal-cols,1),minmax(95px,1fr))!important;gap:5px;overflow-x:auto;align-items:stretch;scrollbar-width:thin;padding:3px 5px}
+#calTimeline .cal-card{max-width:none!important;min-width:0!important;min-height:30px;flex:none!important;padding:3px 4px;gap:3px;box-shadow:0 2px 3px #4c2c1c20}
+#calTimeline .cal-card .drag-handle{min-height:23px!important;width:23px;flex:0 0 23px;font-size:15px;padding:0}
+#calTimeline .cal-card button[data-select]{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+#calTimeline .cal-card.cal-event{border:3px solid var(--event-edge,#a04e45)!important;background:var(--event-bg,#ffe9db)!important;box-shadow:inset 0 0 0 1px #fff8e9,0 2px 5px #29191630!important;border-radius:7px}
+#calTimeline .cal-event[data-kind="meal"]{--event-edge:#b9682b;--event-bg:#ffebc4}
+#calTimeline .cal-event[data-kind="bath"]{--event-edge:#327f9d;--event-bg:#e3f4f8}
+#calTimeline .cal-event[data-kind="rest"]{--event-edge:#538d60;--event-bg:#ebf5e5}
+#calTimeline .cal-event[data-kind="other"]{--event-edge:#7957a0;--event-bg:#f1e7f8}
+#calTimeline .cal-event .cal-event-name{display:block;flex:1;min-width:0;border:0;background:transparent;color:#3d2b27;font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;padding:1px 0}
+#calTimeline .cal-event .event-remove{border:0;background:#ffffff94;color:#783e3a;border-radius:3px;font-size:14px;flex:0 0 19px;width:19px;height:22px;line-height:20px;padding:0;cursor:pointer}
+#calTimeline .cal-event .event-remove:hover{background:#fff}
+#calTimeline.compact .cal-slot-time{padding:3px 1px!important;font-size:10px}
+#calTimeline.compact .cal-slot-body{padding:1px 3px;gap:3px}
+#calTimeline.compact .cal-card{min-height:21px;height:22px;padding:0 2px!important;border-radius:4px;gap:2px}
+#calTimeline.compact .cal-event{border-width:2px!important}
+#calTimeline.compact .cal-card .drag-handle{min-height:19px!important;width:17px;flex-basis:17px;font-size:12px}
+#calTimeline.compact .cal-card button[data-select],#calTimeline.compact .cal-event .cal-event-name{font-size:10px}
+#calTimeline.compact .cal-event .event-remove{height:18px;width:15px;flex-basis:15px;line-height:16px;font-size:11px}
+.today-done{margin-top:12px!important;padding:7px 10px!important;border-left:3px solid #70916b!important;border-radius:6px!important;background:rgba(255,247,229,.93)!important}
+.today-done #toggleTodayDone{padding:5px 10px!important;min-height:30px!important;font-size:12px!important}
+#todayDoneList{max-height:none!important;overflow:visible!important;margin:5px 0 0!important;padding:2px 7px!important}
+#todayDoneList .today-done-row{grid-template-columns:minmax(0,1fr) auto!important;min-height:29px!important;padding:4px 5px!important;font-size:11px!important;gap:5px!important}
+#todayDoneList .today-done-title{font-size:11px!important;line-height:1.35!important}
+#todayDoneList .today-done-task{min-width:0!important}
+#todayDoneList .today-done-check{width:16px!important;height:16px!important;font-size:10px!important}
+#todayDoneList .log-stamp{display:none!important}
+#todayDoneList time{font-size:10px!important;white-space:nowrap!important}
+@media(max-width:620px){.cal-event-editor{gap:5px;padding:8px}.cal-event-title{width:100%}#calEventTitle{flex-grow:1}#calTimeline .cal-slot-body{grid-template-columns:repeat(var(--cal-cols,1),minmax(84px,1fr))!important}}
+
 </style></head><body>
 <div class="app" id="app">
 <header class="top bathhouse-hero"><div class="hero-copy"><h1>今日のやること手帖</h1></div><button class="btn hero-backup" id="quickExport" type="button">⬇ バックアップ</button></header>
 <div class="hidden" aria-hidden="true"><span id="saveStatus"></span><span id="saveTip"></span></div><div id="storageWarning" class="storage-warning" hidden>⚠ この環境では自動保存できません。バックアップを保存してください。</div><div class="stats"><div class="stat"><strong id="todaycount">0</strong> 今日</div><div class="stat"><strong id="donecount">0</strong> 本日達成</div><div class="progress"><span id="progress"></span></div></div>
-<section class="today-done"><button type="button" class="btn subtle" id="toggleTodayDone" aria-expanded="false">今日やったことを見る ▾ <span id="todayDoneCount"></span></button><div class="done-list hidden" id="todayDoneList"></div></section>
+
 <form class="add" id="addform"><input id="newtitle" autocomplete="off" placeholder="今日やりたいことを追加…" aria-label="新規タスク"/><select id="newlane" aria-label="追加先"><option value="today">今日</option><option value="next">余裕があれば</option><option value="later">保留</option><option value="care_today">今日やるボディケア</option><option value="care_want">やりたいボディケア</option></select><label class="daily-add"><input type="checkbox" id="newDaily"/> 毎日</label><button class="btn primary" type="submit">＋ 仕事を追加</button><button class="btn" type="button" id="newProjectBtn">▣ 大きな仕事を作る</button></form>
 <div class="bar"><nav class="tabs" aria-label="表示切り替え"><button id="showboard" class="on" type="button">五列の帳場</button><button id="showlist" type="button">仕事の一覧</button><button id="showcalendar" type="button">時間割</button></nav><span class="smallnote hidden" id="tip"></span></div>
 <div class="board-scroll" id="boardScroll"><div id="board" class="board"></div></div><div id="listview" class="listview hidden"></div><section id="calendar" class="calendar hidden"><div class="cal-toolbar"><div class="flex"><button type="button" class="btn" id="calPrev">‹ 前日</button><button type="button" class="btn" id="calToday">今日</button><button type="button" class="btn" id="calNow">現在時刻へ</button><button type="button" class="btn" id="calNext">翌日 ›</button></div><label class="cal-date-label">日付 <input type="date" id="calDate"/></label></div><div class="cal-zoom" aria-label="時間割の縦幅"><span class="cal-zoom-label">時間の表示幅</span><button class="btn cal-zoom-button" type="button" id="calZoomOut" aria-label="時間割を縮小">−</button><span id="calZoomPercent" aria-live="polite">100%</span><button class="btn cal-zoom-button" type="button" id="calZoomIn" aria-label="時間割を拡大">＋</button></div>
-<div class="cal-week" id="calWeek"></div><div class="cal-unscheduled" data-calendar-pool="true"><div class="cal-head"><strong>今日やる・今日やるボディケア（未配置）</strong><span id="unscheduledCount"></span></div><div id="calPool" class="cal-pool"></div></div><div class="cal-timeline" id="calTimeline" aria-label="時間割"></div></section>
+<div class="cal-week" id="calWeek"></div><form id="calEventForm" class="cal-event-editor" autocomplete="off">
+ <span class="cal-event-title">生活の予定</span>
+ <select id="calEventKind" aria-label="予定の種類"><option value="meal">食事</option><option value="bath">入浴</option><option value="rest">休憩</option><option value="other">その他</option></select>
+ <input id="calEventTitle" type="text" maxlength="80" placeholder="予定名（省略可）" aria-label="カレンダーだけに追加する予定名"/>
+ <input id="calEventTime" type="time" step="1800" aria-label="予定時刻" required/>
+ <button class="btn primary" id="calEventSubmit" type="submit">＋ 時間割に追加</button>
+ <button class="btn hidden" id="calEventCancel" type="button">取消</button>
+</form><div class="cal-unscheduled" data-calendar-pool="true"><div class="cal-head"><strong>今日やる・今日やるボディケア（未配置）</strong><span id="unscheduledCount"></span></div><div id="calPool" class="cal-pool"></div></div><div class="cal-timeline" id="calTimeline" aria-label="時間割"></div></section>
 
 <section class="details hidden" id="detail"><div class="details-top"><div><h2>実行・再開パネル</h2></div><button class="btn subtle" id="closeDetail" type="button">閉じる ×</button></div><div class="editing"><div class="label">タスク名</div><input id="editTitle"/></div><div class="label">配置</div><div class="stagebuttons"><button type="button" data-stage="today">今日</button><button type="button" data-stage="next">余裕があれば</button><button type="button" data-stage="later">保留</button><button type="button" data-stage="care_today">今日やるボディケア</button><button type="button" data-stage="care_want">やりたいボディケア</button></div><div class="project-edit hidden" id="projectEdit"><div class="label">▣ プロジェクトに既存タスクを追加</div><div class="flex"><select id="projectPick" aria-label="既存のカードを選択"></select><button class="btn" id="projectAddChild" type="button">子タスクに追加</button></div><div class="smallnote">既存のカードを移動します。追加後も内容や完了履歴は維持されます。</div><div id="projectChildren" class="project-member-list"></div></div><div class="project-edit hidden" id="taskProjectEdit"><div class="label">所属プロジェクト</div><select id="parentProject" aria-label="所属プロジェクト"></select></div><div class="recurrence"><label><input type="checkbox" id="editDaily"/> 毎日やるタスク</label><span class="smallnote">完了しても翌日3:00に復活</span></div><div class="schedule-edit"><div class="label">カレンダー配置</div><div class="flex"><label>日付 <input type="date" id="editPlanDate"/></label><label>開始時刻 <input type="time" step="1800" id="editPlanTime"/></label><button class="btn" type="button" id="clearPlan">配置解除</button></div><p class="smallnote">時刻は今日の配置だけに使用し、毎日タスクも翌日には引き継ぎません。</p></div><div class="detailgrid"><div><div class="label">次にする具体的な一手</div><textarea id="editNext" rows="2" placeholder="例：資料を開いて、未確認箇所を1件読む"></textarea></div><div><div class="label">中断・再開メモ</div><textarea id="editMemo" rows="2" placeholder="今どこまで進んだか"></textarea></div></div><div class="nextbox"><div class="label">作業状態</div><p id="phaseLabel">未着手</p><div class="flex" id="phaseButtons"></div></div><div class="flex"><button class="btn primary" type="button" id="complete">✓ 完了にする</button><button class="btn" type="button" id="delete">削除</button></div></section>
+<section class="today-done"><button type="button" class="btn subtle" id="toggleTodayDone" aria-expanded="false">今日やったことを見る ▾ <span id="todayDoneCount"></span></button><div class="done-list hidden" id="todayDoneList"></div></section>
 <div class="done-wrap"><div class="tools"><button type="button" class="btn subtle" id="toggleDone">全体の完了済みタスクを見る ▾</button><div class="flex"><button type="button" class="btn" id="demo">サンプルを追加</button><label class="stamp-switch"><input type="checkbox" id="stampEnabled" checked/> 完了スタンプ</label><button type="button" class="btn" id="backupBtn">保存・復元</button></div></div><div id="doneList" class="done-list hidden"></div><div id="exportbox" class="exportbox hidden"><div class="label">📂 データの保存・復元</div><div class="flex"><button class="btn primary" id="downloadBackup" type="button">⬇ ファイル保存</button><button class="btn" id="copyBackup" type="button">テキストをコピー</button></div><textarea id="backupText" spellcheck="false" aria-label="バックアップテキスト" placeholder="ここにバックアップテキストを貼り付けて復元も可能"></textarea><div class="label" style="margin-top:10px">保存済みファイルから復元</div><input class="import-file" type="file" id="importFile" accept=".json,application/json,text/plain"/><div class="flex"><button class="btn" id="restoreFile" type="button">ファイルを復元</button><button class="btn" id="restoreBackup" type="button">テキストから復元</button></div><p class="toast" id="toast" role="status"></p></div></div>
 
 </div>
@@ -426,9 +474,9 @@ body{background:#101727;background-image:linear-gradient(180deg,rgba(9,18,36,.43
 const KEY='dailyBoardManualV06',OLD_KEYS=['dailyBoardManualV05','dailyBoardManualV04','dailyBoardManualV03','dailyBoardManualV02'];
 const defs=[{key:'today',label:'今日やる'},{key:'next',label:'余裕があれば'},{key:'later',label:'保留'},{key:'care_today',label:'今日やるボディケア'},{key:'care_want',label:'やりたいボディケア'}];
 const samples=['Fatigue Atlasの追加候補を確認','Notion監査の未解決項目を整理','明日のタスクを1件選ぶ'];
-let state={tasks:[],selected:null,view:'board',doneOpen:false,todayDoneOpen:false,doneHistory:[],lastCycle:null,calDate:null},drag=null;
+let state={tasks:[],calendarEvents:[],selected:null,view:'board',doneOpen:false,todayDoneOpen:false,doneHistory:[],lastCycle:null,calDate:null},drag=null;
 let ready=false,localOK=false,dbOK=false,saveTime=0,db=null,dbTimer=null,calendarScrollMode=null;
-let calSlotHeight=52;const CAL_SLOT_MIN=44,CAL_SLOT_MAX=148;let calendarPinch=null;
+let calSlotHeight=52;const CAL_SLOT_MIN=24,CAL_SLOT_MAX=148;let calendarPinch=null,editingEventId=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const genId=()=>String(Date.now())+'-'+Math.random().toString(36).slice(2,9);
@@ -460,22 +508,23 @@ function normalizeState(s){
  const projects=new Map(tasks.filter(isProject).map(t=>[t.id,t]));
  for(const t of tasks){if(isProject(t)){t.parentId=null;t.daily=false;t.planDate=null;t.planTime=null} else if(!projects.has(t.parentId)||t.parentId===t.id){t.parentId=null}else{t.lane=projects.get(t.parentId).lane;}}
  const history=Array.isArray(s.doneHistory)?s.doneHistory.filter(h=>h&&typeof h.title==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(h.cycle||'')&&Number.isFinite(h.at)).slice(-2000).map(h=>({id:String(h.id||''),title:String(h.title).slice(0,250),cycle:h.cycle,at:h.at})):[];
- return {tasks,doneHistory:history,selected:s.selected??null,view:['board','list','calendar'].includes(s.view)?s.view:'board',doneOpen:!!s.doneOpen,todayDoneOpen:!!s.todayDoneOpen,lastCycle:/^\d{4}-\d{2}-\d{2}$/.test(s.lastCycle||'')?s.lastCycle:currentCycle(),calDate:/^\d{4}-\d{2}-\d{2}$/.test(s.calDate||'')?s.calDate:currentCycle()};
+ const calendarEvents=(Array.isArray(s.calendarEvents)?s.calendarEvents:[]).slice(0,180).filter(e=>e&&typeof e==='object'&&/^\d{4}-\d{2}-\d{2}$/.test(e.date||'')&&/^([01]\d|2[0-3]):(00|30)$/.test(e.time||'')).map(e=>({id:String(e.id||genId()),title:String(e.title||'予定').slice(0,80),kind:['meal','bath','rest','other'].includes(e.kind)?e.kind:'other',date:e.date,time:e.time}));
+ return {tasks,calendarEvents,doneHistory:history,selected:s.selected??null,view:['board','list','calendar'].includes(s.view)?s.view:'board',doneOpen:!!s.doneOpen,todayDoneOpen:!!s.todayDoneOpen,lastCycle:/^\d{4}-\d{2}-\d{2}$/.test(s.lastCycle||'')?s.lastCycle:currentCycle(),calDate:/^\d{4}-\d{2}-\d{2}$/.test(s.calDate||'')?s.calDate:currentCycle()};
 }
 function saveBadge(){if(!ready)return;const good=localOK||dbOK;$('saveStatus').textContent=good?'✓ 端末内に自動保存 · バックアップ推奨':'⚠ この環境では自動保存できません';$('saveStatus').className=good?'ok':'warn';$('saveTip').textContent=good?'端末内の保存は保証されません。「バックアップ」でJSONファイルを保存できます。':'データが消える可能性があります。今すぐ「バックアップ」でファイルを保存してください。';const warn=$('storageWarning');if(warn)warn.hidden=true;const backup=$('quickExport');if(backup){backup.textContent=good?'⬇ バックアップ':'⚠ バックアップ';backup.title=good?'バックアップをダウンロード':'自動保存できない環境です。変更後はバックアップを保存してください。';backup.classList.toggle('needs-backup',!good)}}
 function dbOpen(){return new Promise(resolve=>{try{if(!window.indexedDB)return resolve(null);const q=indexedDB.open('DailyTaskWorkspace',1);q.onupgradeneeded=()=>{const db=q.result;if(!db.objectStoreNames.contains('snapshots'))db.createObjectStore('snapshots')};q.onsuccess=()=>resolve(q.result);q.onerror=()=>resolve(null);q.onblocked=()=>resolve(null)}catch(e){resolve(null)}})}
 function dbRead(key){return new Promise(resolve=>{if(!db)return resolve(null);try{const req=db.transaction('snapshots','readonly').objectStore('snapshots').get(key);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>resolve(null)}catch(e){resolve(null)}})}
 function dbWrite(snap){return new Promise(resolve=>{if(!db)return resolve(false);try{const tx=db.transaction('snapshots','readwrite');tx.objectStore('snapshots').put(snap,'last_v06');tx.oncomplete=()=>resolve(true);tx.onerror=()=>resolve(false);tx.onabort=()=>resolve(false)}catch(e){resolve(false)}})}
-function snapshot(){return {format:'daily-board-backup',version:10,updatedAt:saveTime||Date.now(),...state}}
+function snapshot(){return {format:'daily-board-backup',version:16,updatedAt:saveTime||Date.now(),...state}}
 function save(){if(!ready)return;saveTime=Date.now();const snap=snapshot();try{localStorage.setItem(KEY,JSON.stringify(snap));localOK=localStorage.getItem(KEY)!==null}catch(e){localOK=false}try{sessionStorage.setItem(KEY,JSON.stringify(snap))}catch(e){}if(db){clearTimeout(dbTimer);dbTimer=setTimeout(async()=>{dbOK=await dbWrite(snapshot());saveBadge()},140)}saveBadge()}
-function rollover(){const cur=currentCycle();if(state.lastCycle===cur)return false;const old=state.lastCycle;state.lastCycle=cur;if(state.calDate===old)state.calDate=cur;let count=0;for(const t of state.tasks){t.planDate=null;t.planTime=null;if(t.daily){if(t.done)count++;t.done=false;t.doneAt=null;t.phase='idle';t.lane=t.homeLane;t.memo=''}}for(const t of state.tasks){if(t.parentId&&find(t.parentId)){const p=find(t.parentId);t.lane=p.lane;if(!t.done&&p.done){p.done=false;p.doneAt=null;}}}return count}
+function rollover(){const cur=currentCycle();if(state.lastCycle===cur)return false;const old=state.lastCycle;state.lastCycle=cur;state.calendarEvents=[];if(state.calDate===old)state.calDate=cur;let count=0;for(const t of state.tasks){t.planDate=null;t.planTime=null;if(t.daily){if(t.done)count++;t.done=false;t.doneAt=null;t.phase='idle';t.lane=t.homeLane;t.memo=''}}for(const t of state.tasks){if(t.parentId&&find(t.parentId)){const p=find(t.parentId);t.lane=p.lane;if(!t.done&&p.done){p.done=false;p.doneAt=null;}}}return count}
 async function init(){const candidates=[];for(const storeName of ['localStorage','sessionStorage']){try{const store=window[storeName];for(const key of [KEY,...OLD_KEYS]){const v=JSON.parse(store.getItem(key)||'null');if(v&&Array.isArray(v.tasks))candidates.push({source:key===KEY?storeName:key,v,at:Number(v.updatedAt||0),ver:key===KEY?6:Number(v.version||3)})}}catch(e){}}
 try{localStorage.setItem('__daily_board_storage_test','ok');localOK=localStorage.getItem('__daily_board_storage_test')==='ok';localStorage.removeItem('__daily_board_storage_test')}catch(e){localOK=false}
 db=await dbOpen();for(const key of ['last_v06','last_v05','last']){const v=await dbRead(key);if(v&&Array.isArray(v.tasks))candidates.push({source:'IndexedDB '+key,v,at:Number(v.updatedAt||0),ver:key==='last_v06'?6:key==='last_v05'?5:Number(v.version||3)})}
 candidates.sort((a,b)=>(b.ver||0)-(a.ver||0)||b.at-a.at||(b.v.tasks.length>0)-(a.v.tasks.length>0));
 if(candidates.length){state=normalizeState(candidates[0].v);saveTime=candidates[0].at}
 else{state.lastCycle=currentCycle();state.calDate=currentCycle()}
-const reset=rollover();if(state.view==='calendar'){state.calDate=currentCycle();calendarScrollMode='now'}ready=true;render();saveBadge();if(reset)notice(`3:00更新：毎日タスク ${reset} 件が復活しました`);
+const reset=rollover();if(state.view==='calendar'){state.calDate=currentCycle();calendarScrollMode='now'}ready=true;resetEventEditor();render();saveBadge();if(reset)notice(`3:00更新：毎日タスク ${reset} 件が復活しました`);
 }
 let stampTimer=null;const stampCheckbox=$('stampEnabled');try{stampCheckbox.checked=localStorage.getItem('aburayaRewardStamp')!=='off'}catch(e){}stampCheckbox.addEventListener('change',()=>{try{localStorage.setItem('aburayaRewardStamp',stampCheckbox.checked?'on':'off')}catch(e){}});function showRewardStamp(){if(!stampCheckbox.checked)return;const node=$('rewardStamp');if(!node)return;clearTimeout(stampTimer);node.hidden=false;stampTimer=setTimeout(()=>{node.hidden=true},1850)}
 const phaseText=t=>t.phase==='paused'?'⏸ 中断中':t.phase==='running'?'▶ 進行中':'未着手';
@@ -503,6 +552,12 @@ function moveToLane(task,lane){if(!task||!validLane(lane))return;task.lane=lane;
 function autoSize(el){if(!el)return;el.style.height='auto';el.style.height=Math.min(Math.max(el.scrollHeight+2,52),500)+'px';}
 function calCard(t){return `<div class="cal-card ${state.selected===t.id?'active':''}" data-id="${esc(t.id)}"><button class="drag-handle" data-handle="${esc(t.id)}" aria-label="時間帯へ移動">⠿</button><button data-select="${esc(t.id)}">${esc(t.title)}${t.daily?' <span class="daily-mark">↻</span>':''}</button></div>`}
 function isScheduledHere(t){return !isProject(t)&&!t.done&&!!t.planTime&&t.planDate===state.calDate}
+const CAL_EVENT_LABEL={meal:'食事',bath:'お風呂',rest:'休憩',other:'予定'};
+const calendarEventById=id=>state.calendarEvents.find(e=>e.id===id);
+const quantizedTime=value=>{if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(value||''))return '12:00';const [h,m]=value.split(':').map(Number);return pad(h)+':'+(m>=30?'30':'00')};
+function calendarOnlyCard(e){return `<div class="cal-card cal-event" data-kind="${esc(e.kind)}" data-event-id="${esc(e.id)}" title="${esc(e.title)} · ${esc(e.time)}"><button class="drag-handle" data-handle="${esc(e.id)}" aria-label="${esc(e.title)}を移動">⠿</button><button class="cal-event-name" type="button" data-edit-event="${esc(e.id)}">${esc(e.title)}</button><button class="event-remove" type="button" data-delete-event="${esc(e.id)}" aria-label="${esc(e.title)}を削除">×</button></div>`}
+function resetEventEditor(){editingEventId=null;$('calEventTitle').value='';$('calEventKind').value='meal';$('calEventSubmit').textContent='＋ 時間割に追加';$('calEventCancel').classList.add('hidden');const now=new Date();$('calEventTime').value=state.calDate===currentCycle()?pad(now.getHours())+':'+(now.getMinutes()>=30?'30':'00'):'12:00';}
+
 function clockAt(slot){let min=(180+slot*30)%(24*60);return pad(Math.floor(min/60))+':'+pad(min%60)}
 function offsetFor(time){if(!time)return -1;const p=time.split(':').map(Number);const min=p[0]*60+p[1];return (min+1440-180)%1440}
 function currentSlotIndex(){const n=new Date(),minutes=n.getHours()*60+n.getMinutes();return Math.floor(((minutes+1440-180)%1440)/30)}
@@ -511,7 +566,8 @@ function renderCalendar(){const date=state.calDate;const timeline=$('calTimeline
 $('calDate').value=date;const center=dateFromKey(date),weekday=center.getDay(),start=shiftDay(date,-((weekday+6)%7));
 $('calWeek').innerHTML=Array.from({length:7},(_,i)=>{const k=shiftDay(start,i);const d=dateFromKey(k);const label=['日','月','火','水','木','金','土'][d.getDay()];return `<button type="button" class="cal-day ${k===date?'on':''} ${k===currentCycle()?'today':''}" data-cal-day="${k}"><span>${label}</span>${d.getDate()}</button>`}).join('');
 const pool=state.tasks.filter(t=>!t.done&&calendarEligible(t)&&!t.planTime);$('unscheduledCount').textContent=pool.length+'件';$('calPool').innerHTML=pool.length?pool.map(calCard).join(''):'<span class="cal-empty">今日の未配置タスクはありません。時間枠からここへ戻すこともできます。</span>';
-$('calTimeline').innerHTML=Array.from({length:48},(_,i)=>{const clock=clockAt(i),isCurrent=date===currentCycle()&&i===currentSlotIndex(),scheduled=state.tasks.filter(t=>isScheduledHere(t)&&offsetFor(t.planTime)>=i*30&&offsetFor(t.planTime)<(i+1)*30);return `<div class="cal-slot ${i%2===0?'onhour hour-bg':''} ${isCurrent?'is-current':''}" data-slot="${clock}"><div class="cal-slot-time">${clock}</div><div class="cal-slot-body">${scheduled.map(calCard).join('')}</div></div>`}).join('')+'<div class="cal-tail" aria-hidden="true"></div>';if(calendarScrollMode){scrollCalendarDefault(calendarScrollMode);calendarScrollMode=null}else timeline.scrollTop=beforeScroll;}
+$('calTimeline').classList.toggle('compact',calSlotHeight<=34);
+$('calTimeline').innerHTML=Array.from({length:48},(_,i)=>{const clock=clockAt(i),isCurrent=date===currentCycle()&&i===currentSlotIndex(),scheduled=state.tasks.filter(t=>isScheduledHere(t)&&offsetFor(t.planTime)>=i*30&&offsetFor(t.planTime)<(i+1)*30);const events=state.calendarEvents.filter(e=>e.date===date&&offsetFor(e.time)>=i*30&&offsetFor(e.time)<(i+1)*30);const total=scheduled.length+events.length;return `<div class="cal-slot ${i%2===0?'onhour hour-bg':''} ${isCurrent?'is-current':''}" data-slot="${clock}"><div class="cal-slot-time">${clock}</div><div class="cal-slot-body" style="--cal-cols:${Math.max(1,Math.min(total,4))}">${scheduled.map(calCard).join('')}${events.map(calendarOnlyCard).join('')}</div></div>`}).join('')+'<div class="cal-tail" aria-hidden="true"></div>';if(calendarScrollMode){scrollCalendarDefault(calendarScrollMode);calendarScrollMode=null}else timeline.scrollTop=beforeScroll;}
 function render(){updateStats();$('board').innerHTML=defs.map(d=>{const arr=state.tasks.filter(t=>!t.done&&t.lane===d.key);const roots=sortByScheduledTime(arr.filter(childDisplay));return `<section class="lane" data-lane="${d.key}"><div class="lane-heading"><span class="lane-name">${d.label}</span><span class="count">${arr.length}件</span></div><div class="lane-body">${roots.length?roots.map(boardItem).join(''):'<div class="empty">ここへドロップ</div>'}</div></section>`}).join('');
 $('listview').innerHTML=defs.map(d=>{const arr=state.tasks.filter(t=>!t.done&&t.lane===d.key);const roots=sortByScheduledTime(arr.filter(childDisplay));return `<div class="list-section">${d.label} · ${arr.length}</div>${roots.map(t=>listItem(t)).join('')}`}).join('');
 $('boardScroll').classList.toggle('hidden',state.view!=='board');$('listview').classList.toggle('hidden',state.view!=='list');$('calendar').classList.toggle('hidden',state.view!=='calendar');
@@ -548,7 +604,7 @@ function setSelected(id){state.selected=id;render();$('detail').scrollIntoView({
 function add(title,lane='today',daily=false,kind='task'){const t=normal({id:genId(),title,lane,homeLane:lane,daily:kind==='project'?false:daily,kind,phase:'idle',done:false});state.tasks.push(t);state.selected=t.id;render()}
 $('addform').addEventListener('submit',e=>{e.preventDefault();const v=$('newtitle').value.trim();if(!v)return;add(v,$('newlane').value,$('newDaily').checked);$('newtitle').value='';$('newtitle').focus()});
 $('newProjectBtn').onclick=()=>{const v=$('newtitle').value.trim();if(!v){$('newtitle').focus();$('newtitle').placeholder='プロジェクト名を入力して作成';return}add(v,$('newlane').value,false,'project');$('newtitle').value='';$('newDaily').checked=false};
-function setView(view){const entering=view==='calendar'&&state.view!=='calendar';state.view=view;if(entering){state.calDate=currentCycle();calendarScrollMode='now'}render()}
+function setView(view){const entering=view==='calendar'&&state.view!=='calendar';state.view=view;if(entering){state.calDate=currentCycle();calendarScrollMode='now';resetEventEditor()}render()}
 function updateZoomLabel(){const out=$('calZoomPercent');if(out)out.textContent=Math.round(calSlotHeight/52*100)+'%'}
 function changeCalendarZoom(height,anchorClientY=null){
  const timeline=$('calTimeline');const old=calSlotHeight;const next=Math.max(CAL_SLOT_MIN,Math.min(CAL_SLOT_MAX,Math.round(height)));
@@ -556,7 +612,7 @@ function changeCalendarZoom(height,anchorClientY=null){
  // Use actual on-screen slot height so the time under the pinch midpoint remains stable.
  const oldSlot=timeline.querySelector('.cal-slot')?.getBoundingClientRect().height||old;
  const timeIndex=(timeline.scrollTop+relative)/oldSlot;
- calSlotHeight=next;timeline.style.setProperty('--cal-slot-height',next+'px');updateZoomLabel();
+ calSlotHeight=next;timeline.style.setProperty('--cal-slot-height',next+'px');timeline.classList.toggle('compact',next<=34);updateZoomLabel();
  const newSlot=timeline.querySelector('.cal-slot')?.getBoundingClientRect().height||next;
  timeline.scrollTop=Math.max(0,timeIndex*newSlot-relative);
 }
@@ -569,8 +625,11 @@ zoomTarget.addEventListener('touchcancel',()=>{calendarPinch=null},{passive:true
 zoomTarget.addEventListener('wheel',e=>{if(e.ctrlKey||e.metaKey){e.preventDefault();changeCalendarZoom(calSlotHeight*(e.deltaY<0?1.08:1/1.08),e.clientY)}},{passive:false});
 $('calZoomIn').onclick=()=>changeCalendarZoom(calSlotHeight+12);
 $('calZoomOut').onclick=()=>changeCalendarZoom(calSlotHeight-12);
+$('calEventForm').addEventListener('submit',e=>{e.preventDefault();const kind=$('calEventKind').value;const time=quantizedTime($('calEventTime').value);const title=($('calEventTitle').value.trim()||CAL_EVENT_LABEL[kind]||'予定').slice(0,80);if(editingEventId){const ev=calendarEventById(editingEventId);if(ev){ev.kind=kind;ev.time=time;ev.title=title;ev.date=state.calDate}}else{state.calendarEvents.push({id:genId(),kind,title,time,date:state.calDate})}resetEventEditor();render()});
+$('calEventCancel').onclick=()=>resetEventEditor();
+
 $('showboard').onclick=()=>setView('board');$('showlist').onclick=()=>setView('list');$('showcalendar').onclick=()=>setView('calendar');
-$('calPrev').onclick=()=>{state.calDate=shiftDay(state.calDate,-1);calendarScrollMode='start';render()};$('calNext').onclick=()=>{state.calDate=shiftDay(state.calDate,1);calendarScrollMode='start';render()};$('calToday').onclick=()=>{state.calDate=currentCycle();calendarScrollMode='now';render()};$('calNow').onclick=()=>{state.calDate=currentCycle();calendarScrollMode='now';render()};$('calDate').onchange=e=>{if(/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)){state.calDate=e.target.value;calendarScrollMode='start';render()}};
+$('calPrev').onclick=()=>{resetEventEditor();state.calDate=shiftDay(state.calDate,-1);calendarScrollMode='start';render()};$('calNext').onclick=()=>{resetEventEditor();state.calDate=shiftDay(state.calDate,1);calendarScrollMode='start';render()};$('calToday').onclick=()=>{resetEventEditor();state.calDate=currentCycle();calendarScrollMode='now';render()};$('calNow').onclick=()=>{resetEventEditor();state.calDate=currentCycle();calendarScrollMode='now';render()};$('calDate').onchange=e=>{if(/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)){resetEventEditor();state.calDate=e.target.value;calendarScrollMode='start';render()}};
 $('closeDetail').onclick=()=>{state.selected=null;render()};
 $('editTitle').addEventListener('input',e=>{const t=find(state.selected);if(t){t.title=e.target.value;save()}});$('editTitle').addEventListener('change',render);
 $('editNext').addEventListener('input',e=>{const t=find(state.selected);if(t){t.next=e.target.value;autoSize(e.target);save()}});$('editNext').addEventListener('change',()=>render());
@@ -581,10 +640,12 @@ $('editDaily').onchange=e=>{const t=find(state.selected);if(!t)return;t.daily=e.
 $('editPlanDate').onchange=e=>{const t=find(state.selected);if(t&&!isProject(t)){t.planDate=e.target.value||null;render()}};
 $('editPlanTime').onchange=e=>{const t=find(state.selected);if(t){t.planTime=e.target.value||null;if(t.planTime&&!t.planDate)t.planDate=state.calDate;render()}};
 $('clearPlan').onclick=()=>{const t=find(state.selected);if(t){t.planTime=null;t.planDate=null;render()}};
-document.addEventListener('click',e=>{const target=e.target.closest('button');if(!target)return;const {select,done,restore,stage,phase,calDay,toggleProject,unlink}=target.dataset;
+document.addEventListener('click',e=>{const target=e.target.closest('button');if(!target)return;const {select,done,restore,stage,phase,calDay,toggleProject,unlink,editEvent,deleteEvent}=target.dataset;
+if(deleteEvent){state.calendarEvents=state.calendarEvents.filter(x=>x.id!==deleteEvent);if(editingEventId===deleteEvent)resetEventEditor();render();return}
+if(editEvent){const item=calendarEventById(editEvent);if(!item)return;editingEventId=item.id;$('calEventTitle').value=item.title;$('calEventKind').value=item.kind;$('calEventTime').value=item.time;$('calEventSubmit').textContent='予定を変更';$('calEventCancel').classList.remove('hidden');$('calEventTitle').focus();return}
 if(toggleProject){const p=find(toggleProject);if(p){p.collapsed=!p.collapsed;render()}return}
 if(unlink){const child=find(unlink);if(child){detachFromProject(child);render()}return}
-if(calDay){state.calDate=calDay;calendarScrollMode=calDay===currentCycle()?'now':'start';render();return}
+if(calDay){resetEventEditor();state.calDate=calDay;calendarScrollMode=calDay===currentCycle()?'now':'start';render();return}
 if(select){setSelected(select);return}if(done){setDone(find(done),true);return}
 if(restore){setDone(find(restore),false);return}
 if(stage&&state.selected){const t=find(state.selected);if(t&&!t.done&&validLane(stage)){moveToLane(t,stage);render()}return}
@@ -609,10 +670,11 @@ function beginDrag(e){const h=e.target.closest('[data-handle]');if(!h||e.button>
 function moveGhost(){if(!drag||!drag.ghost)return;drag.ghost.style.left=(drag.x-drag.offsetX)+'px';drag.ghost.style.top=(drag.y-drag.offsetY)+'px';const scroll=drag.mode==='board'?$('boardScroll'):$('calTimeline'),rect=scroll.getBoundingClientRect();if(drag.mode==='board'){if(drag.x>rect.right-30&&drag.x<rect.right+6)scroll.scrollLeft+=16;else if(drag.x<rect.left+30&&drag.x>rect.left-6)scroll.scrollLeft-=16}else{const edge=(drag.y>rect.bottom-28&&drag.y<rect.bottom+6)?1:(drag.y<rect.top+28&&drag.y>rect.top-6)?-1:0;if(edge&&edge===drag.edgeDir){drag.edgeFrames=(drag.edgeFrames||0)+1}else{drag.edgeDir=edge;drag.edgeFrames=0}if(edge&&drag.edgeFrames>=10)scroll.scrollTop+=edge*15;}
 const node=document.elementFromPoint(drag.x,drag.y);document.querySelectorAll('.lane,.cal-slot,.cal-unscheduled').forEach(l=>l.classList.toggle('over',!!node&&(node.closest('.lane,.cal-slot,.cal-unscheduled')===l)));drag.frame=requestAnimationFrame(moveGhost)}
 function moveDrag(e){if(calendarPinch&&e.pointerType==='touch')return;if(!drag)return;drag.x=e.clientX;drag.y=e.clientY;if(!drag.ghost&&Math.hypot(e.clientX-drag.originX,e.clientY-drag.originY)>7){const r=drag.el.getBoundingClientRect();drag.ghost=drag.el.cloneNode(true);drag.ghost.classList.add('drag-ghost');drag.ghost.style.width=r.width+'px';drag.ghost.style.height=r.height+'px';document.body.appendChild(drag.ghost);drag.el.style.opacity='.28';drag.frame=requestAnimationFrame(moveGhost)}e.preventDefault()}
-function endDrag(e){if(!drag)return;const active=drag;drag=null;if(active.frame)cancelAnimationFrame(active.frame);document.querySelectorAll('.lane,.cal-slot,.cal-unscheduled').forEach(l=>l.classList.remove('over'));if(!active.ghost)return;active.ghost.remove();active.el.style.opacity='';const node=document.elementFromPoint(e.clientX,e.clientY);if(!node)return;const moving=find(active.id);if(!moving)return;
-if(active.mode==='calendar'){if(isProject(moving))return;
- const slot=node.closest('[data-slot]'),pool=node.closest('[data-calendar-pool]');if(slot){moving.planTime=slot.dataset.slot;moving.planDate=state.calDate;render()}else if(pool){moving.planTime=null;moving.planDate=null;render()}return;
+function endDrag(e){if(!drag)return;const active=drag;drag=null;if(active.frame)cancelAnimationFrame(active.frame);document.querySelectorAll('.lane,.cal-slot,.cal-unscheduled').forEach(l=>l.classList.remove('over'));if(!active.ghost)return;active.ghost.remove();active.el.style.opacity='';const node=document.elementFromPoint(e.clientX,e.clientY);if(!node)return;const event=calendarEventById(active.id),moving=find(active.id);
+if(active.mode==='calendar'){const slot=node.closest('[data-slot]'),pool=node.closest('[data-calendar-pool]');if(event){if(slot){event.time=slot.dataset.slot;event.date=state.calDate;render()}return}if(!moving||isProject(moving))return;
+ if(slot){moving.planTime=slot.dataset.slot;moving.planDate=state.calDate;render()}else if(pool){moving.planTime=null;moving.planDate=null;render()}return;
 }
+if(!moving)return;
 const laneEl=node.closest('.lane');if(!laneEl)return;const lane=laneEl.dataset.lane,hit=node.closest('.task-card'),hitId=hit?.dataset.id;if(hitId===moving.id)return;const targetProject=find(hitId);if(targetProject&&isProject(targetProject)&&!isProject(moving)){attachToProject(moving,targetProject.id);render();return;}
 if(!validLane(lane))return;let arr=state.tasks.filter(t=>t.id!==moving.id);let index;if(hitId&&hitId!==moving.id){index=arr.findIndex(t=>t.id===hitId);if(index<0)index=arr.length;else if(e.clientY>hit.getBoundingClientRect().top+hit.getBoundingClientRect().height/2)index++}else{index=arr.findLastIndex(t=>!t.done&&t.lane===lane)+1;if(index===0)index=arr.length}moveToLane(moving,lane);arr.splice(index,0,moving);state.tasks=arr;render()
 }
